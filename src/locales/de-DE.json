@@ -1,0 +1,73 @@
+{
+  "community-house-calendar": {
+    "month_names": [
+      "Januar",
+      "Feburar",
+      "März",
+      "April",
+      "Mai",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "Dezember"
+    ],
+    "day_names": [
+      { "name": "Sonntag", "abbrev": "So" },
+      { "name": "Montag", "abbrev": "Mo" },
+      { "name": "Dienstag", "abbrev": "Di" },
+      { "name": "Mittwoch", "abbrev": "Mi" },
+      { "name": "Donnerstag", "abbrev": "Do" },
+      { "name": "Freitag", "abbrev": "Fr" },
+      { "name": "Samstag", "abbrev": "Sa" }
+    ],
+    "floors": {
+      "ground": {
+        "label": "Erdgeschoss",
+        "abbrev_label": "EG",
+        "options": {
+          "at_forenoon": {
+            "label": "Vormittags",
+            "description": "9-13 Uhr (4 Std)"
+          },
+          "at_noon": {
+            "label": "Mittags",
+            "description": "13-16:30 (3,5 Std.)"
+          },
+          "at_afternoon": {
+            "label": "Nachmittags",
+            "description": "16:30-20 Uhr (3,5 Std)"
+          },
+          "at_evening": {
+            "label": "Abends",
+            "description": "20-23 Uhr (3 Std)"
+          },
+          "at_night": {
+            "label": "Nachts",
+            "description": "23-9 Uhr (10 Std)"
+          }
+        }
+      },
+      "first": {
+        "label": "Obergeschoss",
+        "abbrev_label": "OG",
+        "options": {
+          "guest_room_1": {
+            "label": "Gästezimmer 1",
+            "description": "rechts"
+          },
+          "guest_room_2": {
+            "label": "Gästezimmer 2",
+            "description": "mitte"
+          },
+          "creative_room": {
+            "label": "Kreativraum",
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}
