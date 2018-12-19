@@ -5,21 +5,7 @@ import { translate } from 'react-i18next';
 import Page from './page.jsx';
 import Day from './day.jsx';
 
-
-const styles = {
-  monthHeader: {
-    backgroundColor: 'lightblue',
-  },
-  table: {
-    width: '100%',
-    height: '100%',
-    border: '1px solid black',
-    borderCollapse: 'collapse',
-    '& th, td': {
-      border: '1px solid black',
-    }
-  }
-};
+import styles from './styles.js';
 
 
 class PageGroundFloor extends React.PureComponent {
@@ -37,12 +23,12 @@ class PageGroundFloor extends React.PureComponent {
     let days = new Array();
     for( let day = 1; day <= days_in_month; day++) {
       days.push(
-        <Day year={ year } monthIndex={ monthIndex } day={ day }  key={ monthIndex + '-' + day }>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+        <Day year={ year } monthIndex={ monthIndex } day={ day } className={ classes.dayRow } key={ monthIndex + '-' + day }>
+          <td className={ classes.cell }></td>
+          <td className={ classes.cell }></td>
+          <td className={ classes.cell }></td>
+          <td className={ classes.cell }></td>
+          <td className={ classes.cell }></td>
         </Day>
       );
     }
@@ -50,26 +36,26 @@ class PageGroundFloor extends React.PureComponent {
     return (
       <Page>
         <table className={ classes.table }>
-          <thead className={ classes.monthHeader } >
-            <tr>
-              <th colSpan="2">
+          <thead>
+            <tr className={ classes.header }>
+              <th colSpan="2" >
                 <span>.{ ( monthIndex + 1).toString().padStart( 2, '0' ) }</span>
                 <span>{ t( 'month_names.' + monthIndex ) }</span>
                 <span>{ t( 'floors.ground.abbrev_label' ) }</span>
               </th>
-              <th>
+              <th className={ classes.headerOption }>
                 { t( 'floors.ground.options.at_forenoon.label' ) }
               </th>
-              <th >
+              <th className={ classes.headerOption }>
                 { t( 'floors.ground.options.at_noon.label' ) }
               </th>
-              <th>
+              <th className={ classes.headerOption }>
                 { t( 'floors.ground.options.at_afternoon.label' ) }
               </th>
-              <th>
+              <th className={ classes.headerOption }>
                 { t( 'floors.ground.options.at_evening.label' ) }
               </th>
-              <th>
+              <th className={ classes.headerOption }>
                 { t( 'floors.ground.options.at_night.label' ) }
               </th>
             </tr>
