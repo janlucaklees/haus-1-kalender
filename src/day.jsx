@@ -1,6 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import { withNamespaces } from 'react-i18next';
+import { translate } from 'react-i18next';
 
 const styles = {};
 
@@ -24,4 +24,4 @@ class Day extends React.PureComponent {
   }
 }
 
-export default injectSheet(styles)(withNamespaces()(Day));
+export default translate()( injectSheet( styles )( Day ) );

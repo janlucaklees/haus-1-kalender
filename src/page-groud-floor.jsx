@@ -83,4 +83,4 @@ class PageGroundFloor extends React.PureComponent {
   }
 }
 
-export default injectSheet(styles)( translate()(PageGroundFloor) );
+export default translate()( injectSheet( styles )( PageGroundFloor ) );

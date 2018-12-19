@@ -77,4 +77,4 @@ class PageFirstFloor extends React.PureComponent {
   }
 }
 
-export default injectSheet(styles)( translate()(PageFirstFloor) );
+export default translate()( injectSheet( styles )( PageFirstFloor ) );
