@@ -140,6 +140,7 @@ const styles = {
   floorLabel: {
     textAlign: 'center',
     verticalAlign: 'middle',
+    fontWeight: 'bold',
   },
 
   rowHeader: {

@@ -45,7 +45,7 @@ class CalendarPage extends React.PureComponent {
   }
 
   render() {
-    let { classes, t, className } = this.props;
+    let { classes, t, className, label } = this.props;
 
     // generate cells for each option one
     let cells = this.props.children.map( ( child ) => {
@@ -89,7 +89,7 @@ class CalendarPage extends React.PureComponent {
             <tr className={ classes.rowHeader }>
               <th className={ classes.floorLabel } colSpan={2} >
                 <h2 className={ classes.optionLabel }>
-                  { t( 'floors.ground.abbrev_label' ) }
+                  { label }
                 </h2>
               </th>
               { this.props.children }
