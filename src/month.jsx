@@ -39,20 +39,20 @@ class Month extends React.PureComponent {
           label={ t( 'floors.ground.abbrev_label' ) }
           className={ classes.pageEG }>
           <CalendarOption
-            label={       t( 'floors.ground.options.at_forenoon.label' ) }
-            description={ t( 'floors.ground.options.at_forenoon.description' ) } />
+            label={       t( 'floors.ground.options.forenoon.label' ) }
+            description={ t( 'floors.ground.options.forenoon.description' ) } />
           <CalendarOption
-            label={       t( 'floors.ground.options.at_noon.label' ) }
-            description={ t( 'floors.ground.options.at_noon.description' ) } />
+            label={       t( 'floors.ground.options.noon.label' ) }
+            description={ t( 'floors.ground.options.noon.description' ) } />
           <CalendarOption
-            label={       t( 'floors.ground.options.at_afternoon.label' ) }
-            description={ t( 'floors.ground.options.at_afternoon.description' ) } />
+            label={       t( 'floors.ground.options.afternoon.label' ) }
+            description={ t( 'floors.ground.options.afternoon.description' ) } />
           <CalendarOption
-            label={       t( 'floors.ground.options.at_evening.label' ) }
-            description={ t( 'floors.ground.options.at_evening.description' ) } />
+            label={       t( 'floors.ground.options.evening.label' ) }
+            description={ t( 'floors.ground.options.evening.description' ) } />
           <CalendarOption
-            label={       t( 'floors.ground.options.at_night.label' ) }
-            description={ t( 'floors.ground.options.at_night.description' ) } />
+            label={       t( 'floors.ground.options.night.label' ) }
+            description={ t( 'floors.ground.options.night.description' ) } />
         </CalendarPage>
 
         <CalendarPage year={ year } monthIndex={ monthIndex }

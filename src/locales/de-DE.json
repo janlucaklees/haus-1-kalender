@@ -28,24 +28,24 @@
         "label": "Erdgeschoss",
         "abbrev_label": "EG",
         "options": {
-          "at_forenoon": {
-            "label": "Vormittags",
+          "forenoon": {
+            "label": "vormittags",
             "description": "9-13 Uhr (4 Std)"
           },
-          "at_noon": {
-            "label": "Mittags",
+          "noon": {
+            "label": "mittags",
             "description": "13-16:30 (3,5 Std.)"
           },
-          "at_afternoon": {
-            "label": "Nachmittags",
+          "afternoon": {
+            "label": "nachmittags",
             "description": "16:30-20 Uhr (3,5 Std)"
           },
-          "at_evening": {
-            "label": "Abends",
+          "evening": {
+            "label": "abends",
             "description": "20-23 Uhr (3 Std)"
           },
-          "at_night": {
-            "label": "Nachts",
+          "night": {
+            "label": "nachts",
             "description": "23-9 Uhr (10 Std)"
           }
         }
@@ -64,7 +64,7 @@
           },
           "creative_room": {
             "label": "Kreativraum",
-            "description": ""
+            "description": "links"
           }
         }
       }
