@@ -50,8 +50,8 @@ class CalendarPage extends React.PureComponent {
     let { classes, t } = this.props;
 
     // generate cells for each option one
-    let cells = this.props.children.map( () => {
-      return <td className={ classes.cell }></td>;
+    let cells = this.props.children.map( ( child ) => {
+      return <td className={ classes.cell } key={ child.props.label }></td>;
     } );
 
     // create days
