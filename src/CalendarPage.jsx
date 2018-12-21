@@ -5,7 +5,6 @@ import { translate } from 'react-i18next';
 import moment from  'moment';
 
 import Page from './page.jsx';
-import Day from './day.jsx';
 
 import styles from './styles.js';
 
@@ -35,7 +34,6 @@ CalendarOption.propTypes = {
   label: PropTypes.string.isRequired,
   description: PropTypes.string,
 };
-
 export { CalendarOption };
 
 
@@ -61,9 +59,9 @@ class CalendarPage extends React.PureComponent {
       let date = this.date.clone();
       date.date( day );
       days.push(
-        <Day date={ date } key={ date.format( 'YYYY-MM-DD' ) }>
+        <CalendarDay date={ date } key={ date.format( 'YYYY-MM-DD' ) }>
           { cells }
-        </Day>
+        </CalendarDay>
       );
     }
 
@@ -113,3 +111,25 @@ CalendarPage.propTypes = {
 };
 
 export default translate()( injectSheet( styles )( CalendarPage ) );
+
+
+class _CalendarDay extends React.PureComponent {
+  render() {
+    let { classes, date } = this.props;
+    return (
+      <tr className={ `${classes[ 'rowDay_' + date.day() ]} ${classes.rowDay}` }>
+        <td className={ classes.cellDayDate }>
+          { date.format( 'DD' ) }.
+        </td>
+        <td className={ classes.cellDayName }>
+          { this.props.t( 'day_names.' + date.day() + '.abbrev' ) }
+        </td>
+        { this.props.children }
+      </tr>
+    );
+  }
+}
+_CalendarDay.propTypes = {
+  date: PropTypes.instanceOf( moment ).isRequired,
+}
+const CalendarDay = translate()( injectSheet( styles )( _CalendarDay ) );
