@@ -37,9 +37,28 @@ class PageGroundFloor extends React.PureComponent {
       <Page>
         <table className={ classes.table }>
           <thead>
+            <tr>
+              <td className={ classes.colDate }></td>
+              <td className={ classes.colDayName }></td>
+            </tr>
+            <tr>
+              <th className={ classes.rowMonthHeader } colSpan={7}>
+                <h1 className={ classes.monthHeader }>
+                  <span className={ classes.monthNumber }>
+                    .{ ( monthIndex + 1).toString().padStart( 2, '0' ) }
+                  </span>
+                  <span className={ classes.monthName }>
+                    { t( 'month_names.' + monthIndex ) }
+                  </span>
+                </h1>
+              </th>
+            </tr>
             <tr className={ classes.rowHeader }>
-              <th className={ classes.colDate }></th>
-              <th className={ classes.colDayName }></th>
+              <th className={ classes.floorLabel } colSpan={2} >
+                <h2 className={ classes.optionLabel }>
+                  { t( 'floors.ground.abbrev_label' ) }
+                </h2>
+              </th>
               <th className={ classes.cellOption }>
                 <h2 className={ classes.optionLabel }>
                   { t( 'floors.ground.options.at_forenoon.label' ) }

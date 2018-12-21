@@ -19,7 +19,7 @@ const rowDayInnerHeight = rowDayHeight - 2 * borderWidth;
 
 const dayFontSizeScale = 0.55;
 
-const bordered = {
+const cell = {
   border: {
     width: `${ borderWidth }mm`,
     style: 'solid',
@@ -98,6 +98,35 @@ const styles = {
     width: '100%',
     tableLayout: 'fixed',
     borderCollapse: 'collapse',
+    /*'& td, th': {
+      border: '1px solid grey',
+    }*/
+  },
+
+  rowMonthHeader: {
+  },
+
+  monthHeader: {
+    position: 'relative',
+    paddingTop: '2mm',
+    paddingLeft: '12mm',
+    paddingBottom: '5mm',
+  },
+
+  monthNumber: {
+    position: 'absolute',
+    top: '-17mm',
+    left: '-8mm',
+
+    fontSize: '35mm',
+    fontWeight: 'bold',
+
+    opacity: 0.05
+  },
+
+  monthName: {
+    fontSize: '8mm',
+    fontWeight: 'bold',
   },
 
   colDate: {
@@ -108,8 +137,13 @@ const styles = {
     extend: colDayName,
   },
 
+  floorLabel: {
+    textAlign: 'center',
+    verticalAlign: 'middle',
+  },
+
   rowHeader: {
-    height: `${ rowHeaderHeight }mm`,
+    // height: `${ rowHeaderHeight }mm`,
   },
 
   rowDay: {
@@ -137,21 +171,21 @@ const styles = {
   },
 
   cellDayDate: {
-    extend: [ bordered, cellDay, colDate ],
+    extend: [ cell, cellDay, colDate ],
 
     borderRightWidth: 0,
     paddingRight: 0,
   },
 
   cellDayName: {
-    extend: [ bordered, cellDay, colDayName ],
+    extend: [ cell, cellDay, colDayName ],
 
     borderLeftWidth: 0,
     paddingLeft: `${ rowDayHeight * dayFontSizeScale * 0.15 }mm`,
   },
 
   cell: {
-    extend: [ bordered ],
+    extend: [ cell ],
   }
 };
 
