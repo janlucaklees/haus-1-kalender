@@ -67,7 +67,7 @@ const styles = {
     overflow: 'hidden',
     pageBreakAfter: 'always',
 
-    backgroundColor: '#fff',
+    backgroundColor: '#def',
     boxShadow: '2px 2px 10px 0px #888',
 
     '@media print': {
@@ -115,6 +115,7 @@ const styles = {
   rowDay: {
     height: `${ rowDayHeight }mm`,
     fontSize:  `${ rowDayInnerHeight * dayFontSizeScale }mm`,
+    backgroundColor: '#fff',
   },
 
   rowDay_6: {
