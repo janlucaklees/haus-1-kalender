@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
 import moment from  'moment';
@@ -7,6 +8,35 @@ import Page from './page.jsx';
 import Day from './day.jsx';
 
 import styles from './styles.js';
+
+
+const calendarPageOptionSyle = {
+  cell: {
+    textAlign: 'center',
+    verticalAlign: 'bottom',
+    paddingBottom: '1mm',
+  },
+  label: {
+    fontSize: '4.5mm',
+  },
+}
+const XXXCalendarOption = injectSheet( calendarPageOptionSyle )( ( { classes, label, description } ) => (
+  <th className={ classes.cell }>
+    <h2 className={ classes.label }>{ label }</h2>
+    <span>{ description }</span>
+  </th>
+));
+class CalendarOption extends React.PureComponent {
+  render() {
+    return React.createElement(XXXCalendarOption, this.props, null);
+  }
+}
+CalendarOption.propTypes = {
+  label: PropTypes.string.isRequired,
+  description: PropTypes.string,
+};
+
+export { CalendarOption };
 
 
 class CalendarPage extends React.PureComponent {
@@ -76,32 +106,10 @@ class CalendarPage extends React.PureComponent {
   }
 }
 
+CalendarPage.propTypes = {
+  year: PropTypes.number.isRequired,
+  monthIndex: PropTypes.number.isRequired,
+  children: PropTypes.arrayOf( PropTypes.shape( { type: PropTypes.oneOf( [ CalendarOption ] ) } ) ).isRequired,
+};
+
 export default translate()( injectSheet( styles )( CalendarPage ) );
-
-
-
-const calendarPageOptionSyle = {
-  cell: {
-    textAlign: 'center',
-    verticalAlign: 'bottom',
-    paddingBottom: '1mm',
-  },
-  label: {
-    fontSize: '4.5mm',
-  },
-}
-class _CalendarPageOption extends React.PureComponent {
-  render() {
-    let { label, description, classes } = this.props;
-    return (
-      <th className={ classes.cell }>
-        <h2 className={ classes.label }>{ label }</h2>
-        <span>{ description }</span>
-      </th>
-    )
-  }
-}
-const CalendarPageOption = injectSheet( calendarPageOptionSyle )( _CalendarPageOption );
-
-
-export { CalendarPageOption };

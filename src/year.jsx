@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import Month from './month.jsx';
+import Month from './Month.jsx';
+
 
 export default class Year extends React.PureComponent {
   render() {
@@ -14,10 +16,12 @@ export default class Year extends React.PureComponent {
 
     return (
       <div className="year">
-        <div className="months">
-          { months }
-        </div>
+        { months }
       </div>
     );
   }
 }
+
+Year.propTypes = {
+  year: PropTypes.number.isRequired,
+};

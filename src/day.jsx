@@ -1,6 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
+import moment from  'moment';
 
 import styles from './styles.js';
 
@@ -21,5 +23,9 @@ class Day extends React.PureComponent {
     );
   }
 }
+
+Day.propTypes = {
+  date: PropTypes.instanceOf( moment ).isRequired,
+};
 
 export default translate()( injectSheet( styles )( Day ) );

@@ -11,6 +11,7 @@
   "dependencies": {
     "i18next": "^13.0.0",
     "moment": "^2.23.0",
+    "prop-types": "^15.6.2",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
     "react-i18next": "^8.4.0",
