@@ -20,7 +20,7 @@ const calendarPageOptionSyle = {
     fontSize: '4.5mm',
   },
 }
-const XXXCalendarOption = injectSheet( calendarPageOptionSyle )( ( { classes, label, description } ) => (
+const _CalendarOption = injectSheet( calendarPageOptionSyle )( ( { classes, label, description } ) => (
   <th className={ classes.cell }>
     <h2 className={ classes.label }>{ label }</h2>
     <span>{ description }</span>
@@ -28,7 +28,7 @@ const XXXCalendarOption = injectSheet( calendarPageOptionSyle )( ( { classes, la
 ));
 class CalendarOption extends React.PureComponent {
   render() {
-    return React.createElement(XXXCalendarOption, this.props, null);
+    return React.createElement( _CalendarOption, this.props, null );
   }
 }
 CalendarOption.propTypes = {
