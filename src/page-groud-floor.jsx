@@ -40,20 +40,45 @@ class PageGroundFloor extends React.PureComponent {
             <tr className={ classes.rowHeader }>
               <th className={ classes.colDate }></th>
               <th className={ classes.colDayName }></th>
-              <th className={ classes.cellHeaderOption }>
-                { t( 'floors.ground.options.at_forenoon.label' ) }
+              <th className={ classes.cellOption }>
+                <h2 className={ classes.optionLabel }>
+                  { t( 'floors.ground.options.at_forenoon.label' ) }
+                </h2>
+                <span>
+                  { t( 'floors.ground.options.at_forenoon.description' ) }
+                </span>
               </th>
-              <th className={ classes.cellHeaderOption }>
-                { t( 'floors.ground.options.at_noon.label' ) }
+              <th className={ classes.cellOption }>
+                <h2 className={ classes.optionLabel }>
+                  { t( 'floors.ground.options.at_noon.label' ) }
+                </h2>
+                <span>
+                  { t( 'floors.ground.options.at_noon.description' ) }
+                </span>
               </th>
-              <th className={ classes.cellHeaderOption }>
-                { t( 'floors.ground.options.at_afternoon.label' ) }
+              <th className={ classes.cellOption }>
+                <h2 className={ classes.optionLabel }>
+                  { t( 'floors.ground.options.at_afternoon.label' ) }
+                </h2>
+                <span>
+                  { t( 'floors.ground.options.at_afternoon.description' ) }
+                </span>
               </th>
-              <th className={ classes.cellHeaderOption }>
-                { t( 'floors.ground.options.at_evening.label' ) }
+              <th className={ classes.cellOption }>
+                <h2 className={ classes.optionLabel }>
+                  { t( 'floors.ground.options.at_evening.label' ) }
+                </h2>
+                <span>
+                  { t( 'floors.ground.options.at_evening.description' ) }
+                </span>
               </th>
-              <th className={ classes.cellHeaderOption }>
-                { t( 'floors.ground.options.at_night.label' ) }
+              <th className={ classes.cellOption }>
+                <h2 className={ classes.optionLabel }>
+                  { t( 'floors.ground.options.at_night.label' ) }
+                </h2>
+                <span>
+                  { t( 'floors.ground.options.at_night.description' ) }
+                </span>
               </th>
             </tr>
           </thead>

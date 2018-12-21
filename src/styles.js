@@ -125,9 +125,14 @@ const styles = {
     backgroundColor: '#ddd',
   },
 
-  cellHeaderOption: {
+  cellOption: {
     textAlign: 'center',
     verticalAlign: 'bottom',
+    paddingBottom: '1mm',
+  },
+
+  optionLabel: {
+    fontSize: '4.5mm',
   },
 
   cellDayDate: {
