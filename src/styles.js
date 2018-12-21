@@ -2,10 +2,10 @@ const page = {
   width: 210,
   height: 297,
   padding: {
-    top: 15,
-    right: 15,
-    bottom: 15,
-    left: 15,
+    top: 5,
+    right: 5,
+    bottom: 5,
+    left: 5,
   }
 };
 
@@ -13,7 +13,7 @@ const canvas = getPageInnerDimensions( page );
 
 const borderWidth = 0.2;
 
-const rowHeaderHeight = 35;
+const rowHeaderHeight = 25;
 const rowDayHeight = ( canvas.height - rowHeaderHeight ) / 31;
 const rowDayInnerHeight = rowDayHeight - 2 * borderWidth;
 
