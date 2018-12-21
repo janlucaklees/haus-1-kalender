@@ -12,11 +12,11 @@ class Day extends React.PureComponent {
     let date = new Date( year, monthIndex, day );
 
     return (
-      <tr className={ `${classes[`day_${ date.getDay() }`]} ${classes.day}` }>
-        <td className={ classes.dayDate }>
+      <tr className={ `${classes[`rowDay_${ date.getDay() }`]} ${classes.rowDay}` }>
+        <td className={ classes.cellDayDate }>
           { day.toString().padStart( 2, '0' ) }.
         </td>
-        <td className={ classes.dayName }>
+        <td className={ classes.cellDayName }>
           { this.props.t( 'day_names.' + date.getDay() + '.abbrev' ) }
         </td>
         { this.props.children }

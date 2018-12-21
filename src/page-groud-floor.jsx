@@ -23,7 +23,7 @@ class PageGroundFloor extends React.PureComponent {
     let days = new Array();
     for( let day = 1; day <= days_in_month; day++) {
       days.push(
-        <Day year={ year } monthIndex={ monthIndex } day={ day } className={ classes.dayRow } key={ monthIndex + '-' + day }>
+        <Day year={ year } monthIndex={ monthIndex } day={ day } key={ monthIndex + '-' + day }>
           <td className={ classes.cell }></td>
           <td className={ classes.cell }></td>
           <td className={ classes.cell }></td>
@@ -37,25 +37,22 @@ class PageGroundFloor extends React.PureComponent {
       <Page>
         <table className={ classes.table }>
           <thead>
-            <tr className={ classes.header }>
-              <th colSpan="2" >
-                <span>.{ ( monthIndex + 1).toString().padStart( 2, '0' ) }</span>
-                <span>{ t( 'month_names.' + monthIndex ) }</span>
-                <span>{ t( 'floors.ground.abbrev_label' ) }</span>
-              </th>
-              <th className={ classes.headerOption }>
+            <tr className={ classes.rowHeader }>
+              <th className={ classes.colDate }></th>
+              <th className={ classes.colDayName }></th>
+              <th className={ classes.cellHeaderOption }>
                 { t( 'floors.ground.options.at_forenoon.label' ) }
               </th>
-              <th className={ classes.headerOption }>
+              <th className={ classes.cellHeaderOption }>
                 { t( 'floors.ground.options.at_noon.label' ) }
               </th>
-              <th className={ classes.headerOption }>
+              <th className={ classes.cellHeaderOption }>
                 { t( 'floors.ground.options.at_afternoon.label' ) }
               </th>
-              <th className={ classes.headerOption }>
+              <th className={ classes.cellHeaderOption }>
                 { t( 'floors.ground.options.at_evening.label' ) }
               </th>
-              <th className={ classes.headerOption }>
+              <th className={ classes.cellHeaderOption }>
                 { t( 'floors.ground.options.at_night.label' ) }
               </th>
             </tr>
@@ -70,3 +67,10 @@ class PageGroundFloor extends React.PureComponent {
 }
 
 export default translate()( injectSheet( styles )( PageGroundFloor ) );
+
+/*
+<th colSpan="2" >
+  <span>.{ ( monthIndex + 1).toString().padStart( 2, '0' ) }</span>
+  <span>{ t( 'month_names.' + monthIndex ) }</span>
+  <span>{ t( 'floors.ground.abbrev_label' ) }</span>
+</th>*/
