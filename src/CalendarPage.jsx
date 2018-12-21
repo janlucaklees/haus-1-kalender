@@ -45,7 +45,7 @@ class CalendarPage extends React.PureComponent {
   }
 
   render() {
-    let { classes, t } = this.props;
+    let { classes, t, className } = this.props;
 
     // generate cells for each option one
     let cells = this.props.children.map( ( child ) => {
@@ -66,7 +66,7 @@ class CalendarPage extends React.PureComponent {
     }
 
     return (
-      <Page>
+      <Page className={ className }>
         <table className={ classes.table }>
           <thead>
             <tr>

@@ -55,7 +55,6 @@ const styles = {
     width: `${ page.width }mm`,
     height: `${ page.height }mm`,
 
-    margin: '30mm auto',
     padding: {
       top: `${ page.padding.top }mm`,
       right: `${ page.padding.right }mm`,
@@ -67,11 +66,12 @@ const styles = {
     overflow: 'hidden',
     pageBreakAfter: 'always',
 
-    backgroundColor: '#def',
+    backgroundColor: '#fff',
     boxShadow: '2px 2px 10px 0px #888',
 
     '@media print': {
       margin: 0,
+      boxShadow: 'none',
     },
 
     '&:before': {
