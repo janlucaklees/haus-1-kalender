@@ -16,13 +16,16 @@ class PageGroundFloor extends React.PureComponent {
   }
 
   render() {
-    let { classes, t, year, monthIndex } = this.props;
+    let { classes, t } = this.props;
 
     // create days
     let days = new Array();
     for( let day = 1; day <= this.date.daysInMonth(); day++) {
+      // make a copy of the months date object and set the correct day number on it.
+      let date = this.date.clone();
+      date.date( day );
       days.push(
-        <Day year={ year } monthIndex={ monthIndex } day={ day } key={ monthIndex + '-' + day }>
+        <Day date={ date } key={ date.format( 'YYYY-MM-DD' ) }>
           <td className={ classes.cell }></td>
           <td className={ classes.cell }></td>
           <td className={ classes.cell }></td>
@@ -44,10 +47,10 @@ class PageGroundFloor extends React.PureComponent {
               <th className={ classes.rowMonthHeader } colSpan={7}>
                 <h1 className={ classes.monthHeader }>
                   <span className={ classes.monthNumber }>
-                    .{ ( monthIndex + 1).toString().padStart( 2, '0' ) }
+                    { this.date.format( '.MM' ) }
                   </span>
                   <span className={ classes.monthName }>
-                    { t( 'month_names.' + monthIndex ) }
+                    { t( 'month_names.' + this.date.month() ) }
                   </span>
                 </h1>
               </th>

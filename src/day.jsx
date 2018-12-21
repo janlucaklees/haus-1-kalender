@@ -7,17 +7,14 @@ import styles from './styles.js';
 
 class Day extends React.PureComponent {
   render() {
-    let { year, monthIndex, day, classes, className } = this.props;
-
-    let date = new Date( year, monthIndex, day );
-
+    let { classes, date } = this.props;
     return (
-      <tr className={ `${classes[`rowDay_${ date.getDay() }`]} ${classes.rowDay}` }>
+      <tr className={ `${classes[ 'rowDay_' + date.day() ]} ${classes.rowDay}` }>
         <td className={ classes.cellDayDate }>
-          { day.toString().padStart( 2, '0' ) }.
+          { date.format( 'DD' ) }.
         </td>
         <td className={ classes.cellDayName }>
-          { this.props.t( 'day_names.' + date.getDay() + '.abbrev' ) }
+          { this.props.t( 'day_names.' + date.day() + '.abbrev' ) }
         </td>
         { this.props.children }
       </tr>
