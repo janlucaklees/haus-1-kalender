@@ -38,28 +38,25 @@ export { CalendarOption };
 
 
 class CalendarPage extends React.PureComponent {
-  constructor( props ) {
-    super( props );
-    this.date = moment( [ this.props.year, this.props.monthIndex ] );
-    this.numberOfOptions = this.props.children.length;
-  }
-
   render() {
-    let { classes, t, className, label } = this.props;
+    let { classes, t, className, label, year, monthIndex, children } = this.props;
+
+    let date = moment( [ year, monthIndex ] );
+    let numberOfOptions = children.length;
 
     // generate cells for each option one
-    let cells = this.props.children.map( ( child ) => {
+    let cells = children.map( ( child ) => {
       return <td className={ classes.cell } key={ child.props.label }></td>;
     } );
 
     // create days
     let days = new Array();
-    for( let day = 1; day <= this.date.daysInMonth(); day++) {
+    for( let day = 1; day <= date.daysInMonth(); day++) {
       // make a copy of the months date object and set the correct day number on it.
-      let date = this.date.clone();
-      date.date( day );
+      let dayDate = date.clone();
+      dayDate.date( day );
       days.push(
-        <CalendarDay date={ date } key={ date.format( 'YYYY-MM-DD' ) }>
+        <CalendarDay date={ dayDate } key={ dayDate.format( 'YYYY-MM-DD' ) }>
           { cells }
         </CalendarDay>
       );
@@ -74,14 +71,14 @@ class CalendarPage extends React.PureComponent {
               <td className={ classes.colDayName }></td>
             </tr>
             <tr>
-              <th className={ classes.rowMonthHeader } colSpan={ 2 + this.numberOfOptions }>
+              <th className={ classes.rowMonthHeader } colSpan={ 2 + numberOfOptions }>
                 <h1 className={ classes.monthHeader }>
                   <span className={ classes.monthNumber }>
-                    { this.date.format( '.MM.YYYY' ) }
+                    { date.format( '.MM.YYYY' ) }
                   </span>
                   <span className={ classes.monthName }>
-                    { t( 'month_names.' + this.date.month() ) }
-                    { this.date.format( ' YYYY' ) }
+                    { t( 'month_names.' + date.month() ) }
+                    { date.format( ' YYYY' ) }
                   </span>
                 </h1>
               </th>
@@ -92,7 +89,7 @@ class CalendarPage extends React.PureComponent {
                   { label }
                 </h2>
               </th>
-              { this.props.children }
+              { children }
             </tr>
           </thead>
           <tbody>
