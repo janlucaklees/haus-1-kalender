@@ -21,6 +21,7 @@ const calendarPageOptionSyle = {
   },
   description: {
     fontSize: '3.3mm',
+    color: '#696d7f',
     fontFamily: "'Noto Serif', serif",
   },
 }

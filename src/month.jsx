@@ -19,11 +19,11 @@ const styles = {
     },
   },
   pageEG: {
-    backgroundColor: '#def',
+    backgroundColor: '#e7f0ff',
     '-webkit-print-color-adjust': 'exact !important',
   },
   pageOG: {
-    backgroundColor: '#dfe',
+    backgroundColor: '#e7ffdc',
     '-webkit-print-color-adjust': 'exact !important',
   }
 }

@@ -21,6 +21,7 @@ const styles = {
     width: '430mm',
     margin: '10mm auto',
     fontFamily: "'Noto Sans', sans-serif",
+    color: '#0b0020',
     '@media print': {
       width: 'auto',
       margin: 0

@@ -45,7 +45,7 @@ const styles = {
 
   '@global': {
     body: {
-      backgroundColor: '#beeeef',
+      backgroundColor: '#ddd',
     },
     '@page': {
       margin: 0,
@@ -155,11 +155,11 @@ const styles = {
   },
 
   rowDay_6: {
-    backgroundColor: '#eee',
+    backgroundColor: '#f7f8fb',
   },
 
   rowDay_0: {
-    backgroundColor: '#ddd',
+    backgroundColor: '#eff0f2',
   },
 
   cellOption: {
