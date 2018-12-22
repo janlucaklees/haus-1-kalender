@@ -13,8 +13,9 @@ const canvas = getPageInnerDimensions( page );
 
 const borderWidth = 0.2;
 
-const rowHeaderHeight = 25;
-const rowDayHeight = ( canvas.height - rowHeaderHeight ) / 31;
+const rowHeaderHeight = 13;
+const rowOptionsHeight = 12;
+const rowDayHeight = ( canvas.height - rowHeaderHeight - rowOptionsHeight ) / 31;
 const rowDayInnerHeight = rowDayHeight - 2 * borderWidth;
 
 const dayFontSizeScale = 0.55;
@@ -32,12 +33,12 @@ const cellDay = {
 }
 
 const colDate = {
-  width: '9.5mm',
+  width: '9mm',
   textAlign: 'right',
 };
 
 const colDayName = {
-  width: '10.5mm',
+  width: '10.3mm',
 };
 
 const styles = {
@@ -69,6 +70,8 @@ const styles = {
     backgroundColor: '#fff',
     boxShadow: '2px 2px 10px 0px #888',
 
+    fontFamily: "'Buenard', serif",
+
     '@media print': {
       margin: 0,
       boxShadow: 'none',
@@ -98,27 +101,24 @@ const styles = {
     width: '100%',
     tableLayout: 'fixed',
     borderCollapse: 'collapse',
-    /*'& td, th': {
-      border: '1px solid grey',
-    }*/
   },
 
   rowMonthHeader: {
+    height: `${ rowHeaderHeight }mm`,
   },
 
   monthHeader: {
     position: 'relative',
-    paddingTop: '2mm',
-    paddingLeft: '12mm',
-    paddingBottom: '5mm',
+    paddingTop: '0mm',
+    paddingLeft: '16mm',
   },
 
   monthNumber: {
     position: 'absolute',
-    top: '-17mm',
+    top: '-27mm',
     left: '-8mm',
 
-    fontSize: '35mm',
+    fontSize: '37mm',
     fontWeight: 'bold',
 
     opacity: 0.05
@@ -141,10 +141,11 @@ const styles = {
     textAlign: 'center',
     verticalAlign: 'middle',
     fontWeight: 'bold',
+    fontSize: '5mm',
   },
 
-  rowHeader: {
-    // height: `${ rowHeaderHeight }mm`,
+  rowOptions: {
+    height: `${ rowOptionsHeight }mm`,
   },
 
   rowDay: {
@@ -165,10 +166,6 @@ const styles = {
     textAlign: 'center',
     verticalAlign: 'bottom',
     paddingBottom: '1mm',
-  },
-
-  optionLabel: {
-    fontSize: '4.5mm',
   },
 
   cellDayDate: {

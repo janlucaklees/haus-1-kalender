@@ -2,15 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectSheet from 'react-jss';
 import moment from  'moment';
+import WebFont from 'webfontloader';
 
 import './i18n';
 import Controls from './Controls.jsx';
 import Year from './Year.jsx';
 
+
+WebFont.load({
+  google: {
+    families: ['Buenard', 'Noto Sans', 'Noto Serif'],
+  }
+});
+
+
 const styles = {
   container: {
     width: '430mm',
     margin: '10mm auto',
+    fontFamily: "'Noto Sans', sans-serif",
     '@media print': {
       width: 'auto',
       margin: 0

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
 import moment from  'moment';
+import classNames from 'classnames';
 
 import Page from './page.jsx';
 
@@ -16,13 +17,17 @@ const calendarPageOptionSyle = {
     paddingBottom: '1mm',
   },
   label: {
-    fontSize: '4.5mm',
+    fontSize: '5.5mm',
+  },
+  description: {
+    fontSize: '3.3mm',
+    fontFamily: "'Noto Serif', serif",
   },
 }
 const _CalendarOption = injectSheet( calendarPageOptionSyle )( ( { classes, label, description } ) => (
   <th className={ classes.cell }>
     <h2 className={ classes.label }>{ label }</h2>
-    <span>{ description }</span>
+    <span className={ classes.description }>{ description }</span>
   </th>
 ));
 class CalendarOption extends React.PureComponent {
@@ -63,15 +68,15 @@ class CalendarPage extends React.PureComponent {
     }
 
     return (
-      <Page className={ className }>
+      <Page className={ classNames( className, classes.page ) }>
         <table className={ classes.table }>
           <thead>
             <tr>
               <td className={ classes.colDate }></td>
               <td className={ classes.colDayName }></td>
             </tr>
-            <tr>
-              <th className={ classes.rowMonthHeader } colSpan={ 2 + numberOfOptions }>
+            <tr className={ classes.rowMonthHeader }>
+              <th colSpan={ 2 + numberOfOptions }>
                 <h1 className={ classes.monthHeader }>
                   <span className={ classes.monthNumber }>
                     { date.format( '.MM.YYYY' ) }
@@ -83,9 +88,9 @@ class CalendarPage extends React.PureComponent {
                 </h1>
               </th>
             </tr>
-            <tr className={ classes.rowHeader }>
+            <tr className={ classes.rowOptions }>
               <th className={ classes.floorLabel } colSpan={2} >
-                <h2 className={ classes.optionLabel }>
+                <h2>
                   { label }
                 </h2>
               </th>
