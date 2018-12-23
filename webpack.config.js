@@ -1,7 +1,7 @@
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.jsx',
+  entry: './src/App.jsx',
   module: {
     rules: [
       {
@@ -16,7 +16,7 @@ module.exports = {
   },
   devtool: "source-map",
   output: {
-    path: __dirname + '/dist',
+    path: __dirname + '/docs',
     publicPath: '/',
     filename: 'bundle.js'
   },
@@ -24,7 +24,7 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {
-    contentBase: './dist',
+    contentBase: './docs',
     hot: true
   }
 };
