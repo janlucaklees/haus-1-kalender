@@ -13,7 +13,7 @@ const canvas = getPageInnerDimensions( page );
 
 const borderWidth = 0.2;
 
-const rowHeaderHeight = 13;
+const rowHeaderHeight = 12;
 const rowOptionsHeight = 12;
 const rowDayHeight = ( canvas.height - rowHeaderHeight - rowOptionsHeight ) / 31;
 const rowDayInnerHeight = rowDayHeight - 2 * borderWidth;
