@@ -17,14 +17,6 @@ const styles = {
       margin: 0,
       display: 'block',
     },
-  },
-  pageEG: {
-    backgroundColor: '#e7f0ff',
-    '-webkit-print-color-adjust': 'exact !important',
-  },
-  pageOG: {
-    backgroundColor: '#e7ffdc',
-    '-webkit-print-color-adjust': 'exact !important',
   }
 }
 
@@ -37,7 +29,7 @@ class Month extends React.PureComponent {
 
         <CalendarPage year={ year } monthIndex={ monthIndex }
           label={ t( 'floors.ground.abbrev_label' ) }
-          className={ classes.pageEG }>
+          backgroundPrintColor='#e7f0ff'>
           <CalendarOption
             label={       t( 'floors.ground.options.forenoon.label' ) }
             description={ t( 'floors.ground.options.forenoon.description' ) } />
@@ -57,7 +49,7 @@ class Month extends React.PureComponent {
 
         <CalendarPage year={ year } monthIndex={ monthIndex }
           label={ t( 'floors.first.abbrev_label' ) }
-          className={ classes.pageOG }>
+          backgroundPrintColor='#e7ffdc'>
           <CalendarOption
             label={       t( 'floors.first.options.guest_room_1.label' ) }
             description={ t( 'floors.first.options.guest_room_1.description' ) } />

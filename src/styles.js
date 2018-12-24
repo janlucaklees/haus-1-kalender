@@ -78,22 +78,15 @@ const styles = {
     },
 
     '&:before': {
-      content: 'url()',
       display: 'block',
 
+      objecFit: 'cover',
+
       position: 'absolute',
-      top: `${ page.padding.top }mm`,
-      right: `${ page.padding.right }mm`,
-      bottom: `${ page.padding.bottom }mm`,
-      left: `${ page.padding.left }mm`,
-
-      border: '1px solid #ddd',
-
-      display: 'none',
-
-      '@media print': {
-        display: 'none',
-      },
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
     }
   },
 

@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import Page from './page.jsx';
 
 import styles from './styles.js';
+import { hexColor } from './custom-prop-types.js';
 
 
 const calendarPageOptionSyle = {
@@ -45,7 +46,7 @@ export { CalendarOption };
 
 class CalendarPage extends React.PureComponent {
   render() {
-    let { classes, t, className, label, year, monthIndex, children } = this.props;
+    let { classes, t, className, label, year, monthIndex, children, backgroundPrintColor } = this.props;
 
     let date = moment( [ year, monthIndex ] );
     let numberOfOptions = children.length;
@@ -69,7 +70,7 @@ class CalendarPage extends React.PureComponent {
     }
 
     return (
-      <Page className={ classNames( className, classes.page ) }>
+      <Page className={ classNames( className, classes.page ) } backgroundPrintColor={ backgroundPrintColor }>
         <table className={ classes.table }>
           <thead>
             <tr>
@@ -111,6 +112,7 @@ CalendarPage.propTypes = {
   year: PropTypes.number.isRequired,
   monthIndex: PropTypes.number.isRequired,
   children: PropTypes.arrayOf( PropTypes.shape( { type: PropTypes.oneOf( [ CalendarOption ] ) } ) ).isRequired,
+  backgroundPrintColor: hexColor,
 };
 
 export default translate()( injectSheet( styles )( CalendarPage ) );
