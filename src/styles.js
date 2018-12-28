@@ -103,7 +103,7 @@ const styles = {
   monthHeader: {
     position: 'relative',
     paddingTop: '0mm',
-    paddingLeft: '16mm',
+    paddingLeft: '6mm',
   },
 
   monthNumber: {
@@ -114,7 +114,8 @@ const styles = {
     fontSize: '37mm',
     fontWeight: 'bold',
 
-    opacity: 0.05
+    opacity: 0.05,
+    display: 'none',
   },
 
   monthName: {
