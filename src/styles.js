@@ -43,14 +43,7 @@ const colDayName = {
 
 const styles = {
 
-  '@global': {
-    body: {
-      backgroundColor: '#ddd',
-    },
-    '@page': {
-      margin: 0,
-    }
-  },
+  
 
   page: {
     width: `${ page.width }mm`,

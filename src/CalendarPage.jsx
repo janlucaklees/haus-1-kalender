@@ -11,22 +11,22 @@ import styles from './styles.js';
 import { hexColor } from './custom-prop-types.js';
 
 
-const calendarPageOptionSyle = {
+const calendarPageOptionSyles = {
   cell: {
-    textAlign: 'center',
-    verticalAlign: 'bottom',
-    paddingBottom: '1mm',
+    // textAlign: 'center',
+    // verticalAlign: 'bottom',
+    // paddingBottom: '1mm',
   },
   label: {
-    fontSize: '5.5mm',
+    // fontSize: '5.5mm',
   },
   description: {
-    fontSize: '3.3mm',
-    color: '#696d7f',
-    fontFamily: "'Noto Serif', serif",
+    // fontSize: '3.3mm',
+    // color: '#696d7f',
+    // fontFamily: "'Noto Serif', serif",
   },
 }
-const _CalendarOption = injectSheet( calendarPageOptionSyle )( ( { classes, label, description } ) => (
+const _CalendarOption = injectSheet( calendarPageOptionSyles )( ( { classes, label, description } ) => (
   <th className={ classes.cell }>
     <h2 className={ classes.label }>{ label }</h2>
     <span className={ classes.description }>{ description }</span>
@@ -43,7 +43,11 @@ CalendarOption.propTypes = {
 };
 export { CalendarOption };
 
-
+const calendarPageSyles = {
+  page: {
+    border: '1mm solid red',
+  },
+}
 class CalendarPage extends React.PureComponent {
   render() {
     let { classes, t, className, label, year, monthIndex, children, backgroundPrintColor } = this.props;
@@ -71,38 +75,39 @@ class CalendarPage extends React.PureComponent {
 
     return (
       <Page className={ classNames( className, classes.page ) } backgroundPrintColor={ backgroundPrintColor }>
-        <table className={ classes.table }>
-          <thead>
-            <tr>
-              <td className={ classes.colDate }></td>
-              <td className={ classes.colDayName }></td>
-            </tr>
-            <tr className={ classes.rowMonthHeader }>
-              <th colSpan={ 2 + numberOfOptions }>
-                <h1 className={ classes.monthHeader }>
-                  <span className={ classes.monthNumber }>
-                    { date.format( '.MM.YYYY' ) }
-                  </span>
-                  <span className={ classes.monthName }>
-                    { t( 'month_names.' + date.month() ) }
-                    { date.format( ' YYYY' ) }
-                  </span>
-                </h1>
-              </th>
-            </tr>
-            <tr className={ classes.rowOptions }>
-              <th className={ classes.floorLabel } colSpan={2} >
-                <h2>
-                  { label }
-                </h2>
-              </th>
-              { children }
-            </tr>
-          </thead>
-          <tbody>
-            { days }
-          </tbody>
-        </table>
+        { // <table className={ classes.table }>
+        //   <thead>
+        //     <tr>
+        //       <td className={ classes.colDate }></td>
+        //       <td className={ classes.colDayName }></td>
+        //     </tr>
+        //     <tr className={ classes.rowMonthHeader }>
+        //       <th colSpan={ 2 + numberOfOptions }>
+        //         <h1 className={ classes.monthHeader }>
+        //           <span className={ classes.monthNumber }>
+        //             { date.format( '.MM.YYYY' ) }
+        //           </span>
+        //           <span className={ classes.monthName }>
+        //             { t( 'month_names.' + date.month() ) }
+        //             { date.format( ' YYYY' ) }
+        //           </span>
+        //         </h1>
+        //       </th>
+        //     </tr>
+        //     <tr className={ classes.rowOptions }>
+        //       <th className={ classes.floorLabel } colSpan={2} >
+        //         <h2>
+        //           { label }
+        //         </h2>
+        //       </th>
+        //       { children }
+        //     </tr>
+        //   </thead>
+        //   <tbody>
+        //     { days }
+        //   </tbody>
+        // </table> }
+      }
       </Page>
     );
   }
@@ -115,7 +120,7 @@ CalendarPage.propTypes = {
   backgroundPrintColor: hexColor,
 };
 
-export default translate()( injectSheet( styles )( CalendarPage ) );
+export default translate()( injectSheet( calendarPageSyles )( CalendarPage ) );
 
 
 class _CalendarDay extends React.PureComponent {

@@ -8,15 +8,15 @@ import CalendarPage, { CalendarOption } from './CalendarPage.jsx';
 
 const styles = {
   month: {
-    width: '430mm',
-    margin: '25mm auto',
-    display: 'flex',
-    justifyContent: 'space-between',
-    '@media print': {
-      width: 'auto',
-      margin: 0,
-      display: 'block',
-    },
+    // width: '430mm',
+    // margin: '25mm auto',
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    // '@media print': {
+    //   width: 'auto',
+    //   margin: 0,
+    //   display: 'block',
+    // },
   }
 }
 

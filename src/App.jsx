@@ -18,28 +18,33 @@ WebFont.load({
 
 
 const styles = {
-  container: {
-    width: '430mm',
-    margin: '10mm auto',
-    fontFamily: "'Noto Sans', sans-serif",
-    color: '#0b0020',
-    '@media print': {
-      width: 'auto',
-      margin: 0
+  '@global': {
+    body: {
+      // backgroundColor: '#ddd',
     },
   },
+  // container: {
+  //   width: '430mm',
+  //   margin: '10mm auto',
+  //   fontFamily: "'Noto Sans', sans-serif",
+  //   color: '#0b0020',
+  //   '@media print': {
+  //     width: 'auto',
+  //     margin: 0
+  //   },
+  // },
   header: {
-    backgroundColor: '#fff',
-    padding: '5mm 7mm',
-    boxShadow: '2px 2px 10px 0px #888',
+  //   backgroundColor: '#fff',
+  //   padding: '5mm 7mm',
+  //   boxShadow: '2px 2px 10px 0px #888',
     '@media print': {
       display: 'none',
     },
-  },
-  heading: {
-    fontSize: '16mm',
-    textAlign: 'center',
-    marginBottom: '5mm',
+  // },
+  // heading: {
+  //   fontSize: '16mm',
+  //   textAlign: 'center',
+  //   marginBottom: '5mm',
   }
 }
 
