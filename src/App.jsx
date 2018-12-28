@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import injectSheet from 'react-jss';
+import { translate } from 'react-i18next';
 import moment from  'moment';
 import WebFont from 'webfontloader';
 
@@ -45,15 +46,20 @@ const styles = {
 class _App extends React.PureComponent {
   constructor( props ) {
     super( props );
+    let { t } = this.props;
     this.state = {
       year: moment().year(),
     }
+    document.title = t( 'title', { year: moment().year() } );
   }
   changeYear( newYear ) {
+    let { t } = this.props;
     let newYearInt = parseInt( newYear );
     if( !isNaN( newYearInt ) ) {
       this.setState({
         year: newYearInt,
+      }, () => {
+        document.title = t( 'title', { year: newYearInt } );
       });
     } else {
       throw new Error( 'Invalid year `' + newYear + '` supplied.' );
@@ -74,7 +80,7 @@ class _App extends React.PureComponent {
     );
   }
 }
-const App = injectSheet( styles )( _App );
+const App = translate()( injectSheet( styles )( _App ) );
 
 
 ReactDOM.render(
