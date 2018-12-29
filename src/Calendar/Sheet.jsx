@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
 
+import WithPrintableBackground from './WithPrintableBackground.jsx';
 import { hexColor } from '../custom-prop-types.js';
 
 
@@ -49,23 +50,7 @@ const styles = {
       height: '100vh',
     }
   },
-  background: {
-    width: '100%',
-    height: '100%',
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-    objectFit: 'cover',
-  },
   foreground: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-    bottom: 0,
-    left: 0,
-
     padding: {
       top: `${ pageDimensions.padding.top }rem`,
       right: `${ pageDimensions.padding.right }rem`,
@@ -80,12 +65,11 @@ class Sheet extends React.PureComponent {
     let { classes, className, backgroundPrintColor } = this.props;
     return (
       <div className={ classNames( classes.page, className ) }>
-        <img
-          src={ `https://dummyimage.com/1x1/${ backgroundPrintColor.substr( 1 ) }/${ backgroundPrintColor.substr( 1 ) }.png` }
-          className={ classes.background } />
-        <div className={ classes.foreground }>
+        <WithPrintableBackground
+          backgroundColor={ backgroundPrintColor }
+          className={ classes.foreground }>
           { this.props.children }
-        </div>
+        </WithPrintableBackground>
       </div>
     );
   }
