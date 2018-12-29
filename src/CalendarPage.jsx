@@ -5,7 +5,7 @@ import { translate } from 'react-i18next';
 import moment from  'moment';
 import classNames from 'classnames';
 
-import Page from './page.jsx';
+import Page, { pageDimensions } from './Page.jsx';
 
 import styles from './styles.js';
 import { hexColor } from './custom-prop-types.js';
@@ -13,17 +13,17 @@ import { hexColor } from './custom-prop-types.js';
 
 const calendarPageOptionSyles = {
   cell: {
-    // textAlign: 'center',
-    // verticalAlign: 'bottom',
-    // paddingBottom: '1mm',
+    textAlign: 'center',
+    verticalAlign: 'bottom',
+    paddingBottom: '1rem',
   },
   label: {
-    // fontSize: '5.5mm',
+    fontSize: '5.5rem',
   },
   description: {
-    // fontSize: '3.3mm',
-    // color: '#696d7f',
-    // fontFamily: "'Noto Serif', serif",
+    fontSize: '3.3rem',
+    color: '#696d7f',
+    fontFamily: "'Noto Serif', serif",
   },
 }
 const _CalendarOption = injectSheet( calendarPageOptionSyles )( ( { classes, label, description } ) => (
@@ -41,12 +41,68 @@ CalendarOption.propTypes = {
   label: PropTypes.string.isRequired,
   description: PropTypes.string,
 };
-export { CalendarOption };
 
+const borderWidth = 0.2;
+const cell = {
+  border: {
+    width: `${ borderWidth }rem`,
+    style: 'solid',
+    color: 'black',
+  }
+};
+const rowHeaderHeight = 12;
+const rowOptionsHeight = 12;
+const rowDayHeight = ( pageDimensions.canvas.height - rowHeaderHeight - rowOptionsHeight ) / 31;
+const rowDayInnerHeight = rowDayHeight - 2 * borderWidth;
+const dayFontSizeScale = 0.55;
 const calendarPageSyles = {
-  page: {
-    border: '1rem solid red',
+  table: {
+    width: '100%',
+    tableLayout: 'fixed',
+    borderCollapse: 'collapse',
   },
+  colDate: {
+    width: '9rem',
+    textAlign: 'right',
+  },
+  colDayName: {
+    width: '10.3rem',
+  },
+  rowHeader: {
+    height: `${ rowHeaderHeight }rem`,
+  },
+  header: {
+    position: 'relative',
+    paddingTop: '0rem',
+    paddingLeft: '6rem',
+  },
+  headerMonthNumber: {
+    position: 'absolute',
+    top: '-27rem',
+    left: '-8rem',
+
+    fontSize: '37rem',
+    fontWeight: 'bold',
+
+    opacity: 0.05,
+    display: 'none',
+  },
+  headerMonthName: {
+    fontSize: '8rem',
+    fontWeight: 'bold',
+  },
+  rowOptions: {
+    height: `${ rowOptionsHeight }rem`,
+  },
+  option: {
+    textAlign: 'center',
+    verticalAlign: 'middle',
+    fontWeight: 'bold',
+    fontSize: '5rem',
+  },
+  cell: {
+    extend: [ cell ],
+  }
 }
 class CalendarPage extends React.PureComponent {
   render() {
@@ -74,40 +130,39 @@ class CalendarPage extends React.PureComponent {
     }
 
     return (
-      <Page className={ classNames( className, classes.page ) } backgroundPrintColor={ backgroundPrintColor }>
-        { // <table className={ classes.table }>
-        //   <thead>
-        //     <tr>
-        //       <td className={ classes.colDate }></td>
-        //       <td className={ classes.colDayName }></td>
-        //     </tr>
-        //     <tr className={ classes.rowMonthHeader }>
-        //       <th colSpan={ 2 + numberOfOptions }>
-        //         <h1 className={ classes.monthHeader }>
-        //           <span className={ classes.monthNumber }>
-        //             { date.format( '.MM.YYYY' ) }
-        //           </span>
-        //           <span className={ classes.monthName }>
-        //             { t( 'month_names.' + date.month() ) }
-        //             { date.format( ' YYYY' ) }
-        //           </span>
-        //         </h1>
-        //       </th>
-        //     </tr>
-        //     <tr className={ classes.rowOptions }>
-        //       <th className={ classes.floorLabel } colSpan={2} >
-        //         <h2>
-        //           { label }
-        //         </h2>
-        //       </th>
-        //       { children }
-        //     </tr>
-        //   </thead>
-        //   <tbody>
-        //     { days }
-        //   </tbody>
-        // </table> }
-      }
+      <Page className={ className } backgroundPrintColor={ backgroundPrintColor }>
+        <table className={ classes.table }>
+          <thead>
+            <tr>
+              <td className={ classes.colDate }></td>
+              <td className={ classes.colDayName }></td>
+            </tr>
+            <tr className={ classes.rowHeader }>
+              <th className={ classes.header } colSpan={ 2 + numberOfOptions }>
+                <h1>
+                  <span className={ classes.headerMonthNumber }>
+                    { date.format( '.MM.YYYY' ) }
+                  </span>
+                  <span className={ classes.headerMonthName }>
+                    { t( 'month_names.' + date.month() ) }
+                    { date.format( ' YYYY' ) }
+                  </span>
+                </h1>
+              </th>
+            </tr>
+            <tr className={ classes.rowOptions }>
+              <th className={ classes.option } colSpan={2} >
+                <h2>
+                  { label }
+                </h2>
+              </th>
+              { children }
+            </tr>
+          </thead>
+          <tbody>
+            { days }
+          </tbody>
+        </table>
       </Page>
     );
   }
@@ -122,7 +177,33 @@ CalendarPage.propTypes = {
 
 export default translate()( injectSheet( calendarPageSyles )( CalendarPage ) );
 
-
+const cellDay = {
+  verticalAlign: 'middle',
+};
+const calendarDayStyles = {
+  rowDay: {
+    height: `${ rowDayHeight }rem`,
+    fontSize:  `${ rowDayInnerHeight * dayFontSizeScale }rem`,
+    backgroundColor: '#fff',
+  },
+  rowDay_6: {
+    backgroundColor: '#f7f8fb',
+  },
+  rowDay_0: {
+    backgroundColor: '#eff0f2',
+  },
+  cellDayDate: {
+    extend: [ cell, cellDay ],
+    borderRightWidth: 0,
+    paddingRight: 0,
+    textAlign: 'right',
+  },
+  cellDayName: {
+    extend: [ cell, cellDay ],
+    borderLeftWidth: 0,
+    paddingLeft: `${ rowDayHeight * dayFontSizeScale * 0.15 }rem`,
+  },
+};
 class _CalendarDay extends React.PureComponent {
   render() {
     let { classes, date } = this.props;
@@ -142,4 +223,6 @@ class _CalendarDay extends React.PureComponent {
 _CalendarDay.propTypes = {
   date: PropTypes.instanceOf( moment ).isRequired,
 }
-const CalendarDay = translate()( injectSheet( styles )( _CalendarDay ) );
+const CalendarDay = translate()( injectSheet( calendarDayStyles )( _CalendarDay ) );
+
+export { CalendarOption };

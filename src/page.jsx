@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { hexColor } from './custom-prop-types.js';
 
 
-const pageDimensions = {
+const pageOuterDimensions = {
   width: 210,
   height: 297,
   padding: {
@@ -16,6 +16,10 @@ const pageDimensions = {
     left: 5,
   }
 };
+
+const pageDimensions = Object.assign({}, pageOuterDimensions, {
+  canvas: getPageInnerDimensions( pageOuterDimensions ),
+});
 
 const styles = {
   '@global': {
@@ -92,5 +96,13 @@ Page.propTypes = {
 }
 
 export default injectSheet(styles)(Page);
+
+
+function getPageInnerDimensions( page ) {
+  return {
+    width: page.width - page.padding.left - page.padding.right,
+    height: page.height - page.padding.top - page.padding.bottom,
+  }
+}
 
 export { pageDimensions };
