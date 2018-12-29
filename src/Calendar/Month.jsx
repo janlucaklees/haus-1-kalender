@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
 
-import CalendarPage, { CalendarOption } from './CalendarPage.jsx';
+import Page, { CalendarOption } from './Page.jsx';
 
 
 const styles = {
@@ -27,7 +27,7 @@ class Month extends React.PureComponent {
     return (
       <div className={ classes.month }>
 
-        <CalendarPage year={ year } monthIndex={ monthIndex }
+        <Page year={ year } monthIndex={ monthIndex }
           label={ t( 'floors.ground.abbrev_label' ) }
           backgroundPrintColor='#e7f0ff'>
           <CalendarOption
@@ -45,9 +45,9 @@ class Month extends React.PureComponent {
           <CalendarOption
             label={       t( 'floors.ground.options.night.label' ) }
             description={ t( 'floors.ground.options.night.description' ) } />
-        </CalendarPage>
+        </Page>
 
-        <CalendarPage year={ year } monthIndex={ monthIndex }
+        <Page year={ year } monthIndex={ monthIndex }
           label={ t( 'floors.first.abbrev_label' ) }
           backgroundPrintColor='#e7ffdc'>
           <CalendarOption
@@ -59,7 +59,7 @@ class Month extends React.PureComponent {
           <CalendarOption
             label={       t( 'floors.first.options.creative_room.label' ) }
             description={ t( 'floors.first.options.creative_room.description' ) } />
-        </CalendarPage>
+        </Page>
 
       </div>
     );

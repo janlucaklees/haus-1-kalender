@@ -5,13 +5,13 @@ import { translate } from 'react-i18next';
 import moment from  'moment';
 import classNames from 'classnames';
 
-import Page, { pageDimensions } from './Page.jsx';
-import { A4Measures } from './PageMeasures.js';
+import Sheet, { pageDimensions } from './Sheet.jsx';
+import { A4Measurements } from './PageMeasurements.js';
 
-import { hexColor } from './custom-prop-types.js';
+import { hexColor } from '../custom-prop-types.js';
 
 
-let measures = new A4Measures( {
+let measures = new A4Measurements( {
   padding: {
     top: 5,
     right: 5,
@@ -113,7 +113,7 @@ const calendarPageSyles = {
     extend: [ cell ],
   }
 }
-class CalendarPage extends React.PureComponent {
+class Page extends React.PureComponent {
   render() {
     let { classes, t, className, label, year, monthIndex, children, backgroundPrintColor } = this.props;
 
@@ -139,7 +139,7 @@ class CalendarPage extends React.PureComponent {
     }
 
     return (
-      <Page className={ className } backgroundPrintColor={ backgroundPrintColor }>
+      <Sheet className={ className } backgroundPrintColor={ backgroundPrintColor }>
         <table className={ classes.table }>
           <thead>
             <tr>
@@ -172,19 +172,19 @@ class CalendarPage extends React.PureComponent {
             { days }
           </tbody>
         </table>
-      </Page>
+      </Sheet>
     );
   }
 }
 
-CalendarPage.propTypes = {
+Page.propTypes = {
   year: PropTypes.number.isRequired,
   monthIndex: PropTypes.number.isRequired,
   children: PropTypes.arrayOf( PropTypes.shape( { type: PropTypes.oneOf( [ CalendarOption ] ) } ) ).isRequired,
   backgroundPrintColor: hexColor,
 };
 
-export default translate()( injectSheet( calendarPageSyles )( CalendarPage ) );
+export default translate()( injectSheet( calendarPageSyles )( Page ) );
 
 const cellDay = {
   verticalAlign: 'middle',

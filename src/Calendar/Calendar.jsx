@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Month from './Month.jsx';
 
 
-export default class Year extends React.PureComponent {
+class Calendar extends React.PureComponent {
   render() {
     let { year } = this.props;
 
@@ -22,6 +22,8 @@ export default class Year extends React.PureComponent {
   }
 }
 
-Year.propTypes = {
+Calendar.propTypes = {
   year: PropTypes.number.isRequired,
 };
+
+export default Calendar;

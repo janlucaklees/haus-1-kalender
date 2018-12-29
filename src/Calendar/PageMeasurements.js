@@ -1,4 +1,4 @@
-export default class PageMeasures {
+export default class PageMeasurements {
   constructor( measurements = {
     width,
     height,
@@ -35,7 +35,7 @@ export default class PageMeasures {
   }
 }
 
-export class A4Measures extends PageMeasures {
+export class A4Measurements extends PageMeasurements {
   constructor( measurements = {
     padding: {
       top,
