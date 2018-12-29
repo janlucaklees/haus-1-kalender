@@ -28,47 +28,47 @@ const styles = {
     width: `${ pageDimensions.width }mm`,
     height: `${ pageDimensions.height }mm`,
 
-    // position: 'relative',
-    // overflow: 'hidden',
+    position: 'relative',
+    overflow: 'hidden',
     pageBreakAfter: 'always',
-    //
-    // backgroundColor: '#fff',
-    // boxShadow: '2px 2px 10px 0px #888',
-    // '-webkit-print-color-adjust': 'exact !important',
-    //
-    // fontFamily: "'Buenard', serif",
+
+    backgroundColor: '#fff',
+    boxShadow: '2px 2px 10px 0px #888',
+    '-webkit-print-color-adjust': 'exact !important',
+
+    fontFamily: "'Buenard', serif",
 
     '@media print': {
       margin: 0,
-      // boxShadow: 'none',
+      boxShadow: 'none',
       width: '100vw',
       height: '100vh',
     }
   },
-  // background: {
-  //   width: '100%',
-  //   height: '100%',
-  //   position: 'absolute',
-  //   top: 0,
-  //   right: 0,
-  //   bottom: 0,
-  //   left: 0,
-  //   objectFit: 'cover',
-  // },
-  // foreground: {
-  //   position: 'absolute',
-  //   top: 0,
-  //   right: 0,
-  //   bottom: 0,
-  //   left: 0,
-  //
-  //   padding: {
-  //     top: `${ pageDimensions.padding.top }mm`,
-  //     right: `${ pageDimensions.padding.right }mm`,
-  //     bottom: `${ pageDimensions.padding.bottom }mm`,
-  //     left: `${ pageDimensions.padding.left }mm`,
-  //   },
-  // }
+  background: {
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+    objectFit: 'cover',
+  },
+  foreground: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    bottom: 0,
+    left: 0,
+
+    padding: {
+      top: `${ pageDimensions.padding.top }mm`,
+      right: `${ pageDimensions.padding.right }mm`,
+      bottom: `${ pageDimensions.padding.bottom }mm`,
+      left: `${ pageDimensions.padding.left }mm`,
+    },
+  }
 }
 
 class Page extends React.PureComponent {
