@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import moment from  'moment';
 
 import Month from './Month.jsx';
 
@@ -9,13 +10,12 @@ class Calendar extends React.PureComponent {
     let { year } = this.props;
 
     let months = new Array();
-
     for( let monthIndex = 0; monthIndex < 12; monthIndex++) {
       months.push( <Month year={ year } monthIndex={ monthIndex } key={ 'month_' + monthIndex } /> );
     }
 
     return (
-      <div className="year">
+      <div className="calendar">
         { months }
       </div>
     );
@@ -23,7 +23,11 @@ class Calendar extends React.PureComponent {
 }
 
 Calendar.propTypes = {
-  year: PropTypes.number.isRequired,
+  year: PropTypes.number
+};
+
+Calendar.defaultProps = {
+  year: moment().year()
 };
 
 export default Calendar;
