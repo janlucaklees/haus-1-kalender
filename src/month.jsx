@@ -9,7 +9,7 @@ import CalendarPage, { CalendarOption } from './CalendarPage.jsx';
 const styles = {
   month: {
     width: '100%',
-    margin: '25mm auto',
+    margin: '25rem auto',
     display: 'flex',
     justifyContent: 'space-between',
     '@media print': {

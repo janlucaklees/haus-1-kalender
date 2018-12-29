@@ -45,7 +45,7 @@ export { CalendarOption };
 
 const calendarPageSyles = {
   page: {
-    border: '1mm solid red',
+    border: '1rem solid red',
   },
 }
 class CalendarPage extends React.PureComponent {

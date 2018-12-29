@@ -25,8 +25,8 @@ const styles = {
     },
   },
   page: {
-    width: `${ pageDimensions.width }mm`,
-    height: `${ pageDimensions.height }mm`,
+    width: `${ pageDimensions.width }rem`,
+    height: `${ pageDimensions.height }rem`,
 
     position: 'relative',
     overflow: 'hidden',
@@ -63,10 +63,10 @@ const styles = {
     left: 0,
 
     padding: {
-      top: `${ pageDimensions.padding.top }mm`,
-      right: `${ pageDimensions.padding.right }mm`,
-      bottom: `${ pageDimensions.padding.bottom }mm`,
-      left: `${ pageDimensions.padding.left }mm`,
+      top: `${ pageDimensions.padding.top }rem`,
+      right: `${ pageDimensions.padding.right }rem`,
+      bottom: `${ pageDimensions.padding.bottom }rem`,
+      left: `${ pageDimensions.padding.left }rem`,
     },
   }
 }
