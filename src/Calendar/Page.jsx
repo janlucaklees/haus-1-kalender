@@ -3,70 +3,18 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
 import moment from  'moment';
-import classNames from 'classnames';
 
 import Sheet, { pageDimensions } from './Sheet.jsx';
-import { A4Measurements } from './PageMeasurements.js';
+import Option from './Option.jsx';
+import Day, { Placeholder } from './Day.jsx';
 
 import { hexColor } from '../custom-prop-types.js';
 
 
-let measures = new A4Measurements( {
-  padding: {
-    top: 5,
-    right: 5,
-    bottom: 5,
-    left: 5,
-  },
-  borderWidth: 0.2,
-  headerHeight: 12,
-  optionsHeight: 12,
-} );
-
-const calendarPageOptionSyles = {
-  cell: {
-    textAlign: 'center',
-    verticalAlign: 'bottom',
-    paddingBottom: '1rem',
-  },
-  label: {
-    fontSize: '5.5rem',
-  },
-  description: {
-    fontSize: '3.3rem',
-    color: '#696d7f',
-    fontFamily: "'Noto Serif', serif",
-  },
-}
-const _CalendarOption = injectSheet( calendarPageOptionSyles )( ( { classes, label, description } ) => (
-  <th className={ classes.cell }>
-    <h2 className={ classes.label }>{ label }</h2>
-    <span className={ classes.description }>{ description }</span>
-  </th>
-));
-class CalendarOption extends React.PureComponent {
-  render() {
-    return React.createElement( _CalendarOption, this.props, null );
-  }
-}
-CalendarOption.propTypes = {
-  label: PropTypes.string.isRequired,
-  description: PropTypes.string,
-};
-
-const cell = {
-  border: {
-    width: `${ measures.getBorderWidth() }rem`,
-    style: 'solid',
-    color: 'black',
-  }
-};
-
-const dayFontSizeScale = 0.55;
-
 const calendarPageSyles = {
   table: {
     width: '100%',
+    height: '100%',
     tableLayout: 'fixed',
     borderCollapse: 'collapse',
   },
@@ -78,7 +26,7 @@ const calendarPageSyles = {
     width: '10.3rem',
   },
   rowHeader: {
-    height: `${ measures.getHeaderHeight() }rem`,
+    height: '12rem',
   },
   header: {
     position: 'relative',
@@ -101,7 +49,7 @@ const calendarPageSyles = {
     fontWeight: 'bold',
   },
   rowOptions: {
-    height: `${ measures.getOptionsHeight() }rem`,
+    height: '12rem',
   },
   option: {
     textAlign: 'center',
@@ -109,9 +57,6 @@ const calendarPageSyles = {
     fontWeight: 'bold',
     fontSize: '5rem',
   },
-  cell: {
-    extend: [ cell ],
-  }
 }
 class Page extends React.PureComponent {
   render() {
@@ -120,21 +65,23 @@ class Page extends React.PureComponent {
     let date = moment( [ year, monthIndex ] );
     let numberOfOptions = children.length;
 
-    // generate cells for each option one
-    let cells = children.map( ( child ) => {
-      return <td className={ classes.cell } key={ child.props.label }></td>;
-    } );
-
     // create days
     let days = new Array();
-    for( let day = 1; day <= date.daysInMonth(); day++) {
-      // make a copy of the months date object and set the correct day number on it.
-      let dayDate = date.clone();
-      dayDate.date( day );
+    let day;
+    for( day = 1; day <= date.daysInMonth(); day++) {
+      let dayDate = date.clone().date( day );
       days.push(
-        <CalendarDay date={ dayDate } key={ dayDate.format( 'YYYY-MM-DD' ) }>
-          { cells }
-        </CalendarDay>
+        <Day
+          date={ dayDate }
+          numberOfOptions={ numberOfOptions }
+          key={ dayDate.format( 'YYYY-MM-DD' ) } />
+      );
+    }
+
+    for( day; day <= 31; day++ ) {
+      let dayDate = date.clone().date( day );
+      days.push(
+        <Placeholder key={ dayDate.format( 'YYYY-MM-DD' ) } />
       );
     }
 
@@ -180,58 +127,8 @@ class Page extends React.PureComponent {
 Page.propTypes = {
   year: PropTypes.number.isRequired,
   monthIndex: PropTypes.number.isRequired,
-  children: PropTypes.arrayOf( PropTypes.shape( { type: PropTypes.oneOf( [ CalendarOption ] ) } ) ).isRequired,
+  children: PropTypes.arrayOf( PropTypes.shape( { type: PropTypes.oneOf( [ Option ] ) } ) ).isRequired,
   backgroundPrintColor: hexColor,
 };
 
 export default translate()( injectSheet( calendarPageSyles )( Page ) );
-
-const cellDay = {
-  verticalAlign: 'middle',
-};
-const calendarDayStyles = {
-  rowDay: {
-    height: `${ measures.getDayHeight() }rem`,
-    fontSize:  `${ measures.getInnerDayHeight() * dayFontSizeScale }rem`,
-    backgroundColor: '#fff',
-  },
-  rowDay_6: {
-    backgroundColor: '#f7f8fb',
-  },
-  rowDay_0: {
-    backgroundColor: '#eff0f2',
-  },
-  cellDayDate: {
-    extend: [ cell, cellDay ],
-    borderRightWidth: 0,
-    paddingRight: 0,
-    textAlign: 'right',
-  },
-  cellDayName: {
-    extend: [ cell, cellDay ],
-    borderLeftWidth: 0,
-    paddingLeft: `${ measures.getInnerDayHeight() * dayFontSizeScale * 0.15 }rem`,
-  },
-};
-class _CalendarDay extends React.PureComponent {
-  render() {
-    let { classes, date } = this.props;
-    return (
-      <tr className={ `${classes[ 'rowDay_' + date.day() ]} ${classes.rowDay}` }>
-        <td className={ classes.cellDayDate }>
-          { date.format( 'DD' ) }.
-        </td>
-        <td className={ classes.cellDayName }>
-          { this.props.t( 'day_names.' + date.day() + '.abbrev' ) }
-        </td>
-        { this.props.children }
-      </tr>
-    );
-  }
-}
-_CalendarDay.propTypes = {
-  date: PropTypes.instanceOf( moment ).isRequired,
-}
-const CalendarDay = translate()( injectSheet( calendarDayStyles )( _CalendarDay ) );
-
-export { CalendarOption };
