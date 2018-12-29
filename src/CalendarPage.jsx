@@ -6,10 +6,22 @@ import moment from  'moment';
 import classNames from 'classnames';
 
 import Page, { pageDimensions } from './Page.jsx';
+import { A4Measures } from './PageMeasures.js';
 
-import styles from './styles.js';
 import { hexColor } from './custom-prop-types.js';
 
+
+let measures = new A4Measures( {
+  padding: {
+    top: 5,
+    right: 5,
+    bottom: 5,
+    left: 5,
+  },
+  borderWidth: 0.2,
+  headerHeight: 12,
+  optionsHeight: 12,
+} );
 
 const calendarPageOptionSyles = {
   cell: {
@@ -42,19 +54,16 @@ CalendarOption.propTypes = {
   description: PropTypes.string,
 };
 
-const borderWidth = 0.2;
 const cell = {
   border: {
-    width: `${ borderWidth }rem`,
+    width: `${ measures.getBorderWidth() }rem`,
     style: 'solid',
     color: 'black',
   }
 };
-const rowHeaderHeight = 12;
-const rowOptionsHeight = 12;
-const rowDayHeight = ( pageDimensions.canvas.height - rowHeaderHeight - rowOptionsHeight ) / 31;
-const rowDayInnerHeight = rowDayHeight - 2 * borderWidth;
+
 const dayFontSizeScale = 0.55;
+
 const calendarPageSyles = {
   table: {
     width: '100%',
@@ -69,7 +78,7 @@ const calendarPageSyles = {
     width: '10.3rem',
   },
   rowHeader: {
-    height: `${ rowHeaderHeight }rem`,
+    height: `${ measures.getHeaderHeight() }rem`,
   },
   header: {
     position: 'relative',
@@ -92,7 +101,7 @@ const calendarPageSyles = {
     fontWeight: 'bold',
   },
   rowOptions: {
-    height: `${ rowOptionsHeight }rem`,
+    height: `${ measures.getOptionsHeight() }rem`,
   },
   option: {
     textAlign: 'center',
@@ -182,8 +191,8 @@ const cellDay = {
 };
 const calendarDayStyles = {
   rowDay: {
-    height: `${ rowDayHeight }rem`,
-    fontSize:  `${ rowDayInnerHeight * dayFontSizeScale }rem`,
+    height: `${ measures.getDayHeight() }rem`,
+    fontSize:  `${ measures.getInnerDayHeight() * dayFontSizeScale }rem`,
     backgroundColor: '#fff',
   },
   rowDay_6: {
@@ -201,7 +210,7 @@ const calendarDayStyles = {
   cellDayName: {
     extend: [ cell, cellDay ],
     borderLeftWidth: 0,
-    paddingLeft: `${ rowDayHeight * dayFontSizeScale * 0.15 }rem`,
+    paddingLeft: `${ measures.getInnerDayHeight() * dayFontSizeScale * 0.15 }rem`,
   },
 };
 class _CalendarDay extends React.PureComponent {
