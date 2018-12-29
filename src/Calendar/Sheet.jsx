@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import classNames from 'classnames';
 
-import { hexColor } from './custom-prop-types.js';
+import { hexColor } from '../custom-prop-types.js';
 
 
 const pageOuterDimensions = {
@@ -75,7 +75,7 @@ const styles = {
   }
 }
 
-class Page extends React.PureComponent {
+class Sheet extends React.PureComponent {
   render() {
     let { classes, className, backgroundPrintColor } = this.props;
     return (
@@ -91,11 +91,11 @@ class Page extends React.PureComponent {
   }
 }
 
-Page.propTypes = {
+Sheet.propTypes = {
   backgroundPrintColor: hexColor,
 }
 
-export default injectSheet(styles)(Page);
+export default injectSheet( styles )( Sheet );
 
 
 function getPageInnerDimensions( page ) {

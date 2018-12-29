@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
 
-import CalendarPage, { CalendarOption } from './CalendarPage.jsx';
+import Page from './Page.jsx';
+import Option from './Option.jsx';
 
 
 const styles = {
@@ -27,39 +28,43 @@ class Month extends React.PureComponent {
     return (
       <div className={ classes.month }>
 
-        <CalendarPage year={ year } monthIndex={ monthIndex }
+        <Page
+          year={ year }
+          monthIndex={ monthIndex }
           label={ t( 'floors.ground.abbrev_label' ) }
           backgroundPrintColor='#e7f0ff'>
-          <CalendarOption
+          <Option
             label={       t( 'floors.ground.options.forenoon.label' ) }
             description={ t( 'floors.ground.options.forenoon.description' ) } />
-          <CalendarOption
+          <Option
             label={       t( 'floors.ground.options.noon.label' ) }
             description={ t( 'floors.ground.options.noon.description' ) } />
-          <CalendarOption
+          <Option
             label={       t( 'floors.ground.options.afternoon.label' ) }
             description={ t( 'floors.ground.options.afternoon.description' ) } />
-          <CalendarOption
+          <Option
             label={       t( 'floors.ground.options.evening.label' ) }
             description={ t( 'floors.ground.options.evening.description' ) } />
-          <CalendarOption
+          <Option
             label={       t( 'floors.ground.options.night.label' ) }
             description={ t( 'floors.ground.options.night.description' ) } />
-        </CalendarPage>
+        </Page>
 
-        <CalendarPage year={ year } monthIndex={ monthIndex }
+        <Page
+          year={ year }
+          monthIndex={ monthIndex }
           label={ t( 'floors.first.abbrev_label' ) }
           backgroundPrintColor='#e7ffdc'>
-          <CalendarOption
+          <Option
             label={       t( 'floors.first.options.guest_room_1.label' ) }
             description={ t( 'floors.first.options.guest_room_1.description' ) } />
-          <CalendarOption
+          <Option
             label={       t( 'floors.first.options.guest_room_2.label' ) }
             description={ t( 'floors.first.options.guest_room_2.description' ) } />
-          <CalendarOption
+          <Option
             label={       t( 'floors.first.options.creative_room.label' ) }
             description={ t( 'floors.first.options.creative_room.description' ) } />
-        </CalendarPage>
+        </Page>
 
       </div>
     );

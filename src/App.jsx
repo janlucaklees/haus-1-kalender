@@ -7,8 +7,8 @@ import WebFont from 'webfontloader';
 
 import './i18n';
 import Controls from './Controls.jsx';
-import Year from './Year.jsx';
-import { pageDimensions } from './Page.jsx';
+import Calendar from './Calendar/Calendar.jsx';
+import { pageDimensions } from './Calendar/Sheet.jsx';
 
 
 WebFont.load({
@@ -88,7 +88,7 @@ class _App extends React.PureComponent {
           </h1>
           <Controls onYearChange={ newYear => this.changeYear( newYear ) }/>
         </div>
-        <Year year={ this.state.year } />
+        <Calendar year={ this.state.year } />
       </div>
     );
   }
