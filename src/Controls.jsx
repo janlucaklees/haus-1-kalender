@@ -7,7 +7,7 @@ import moment from  'moment';
 const styles = {
   container: {
     textAlign: 'center',
-    fontSize: '6mm',
+    fontSize: '6rem',
   }
 }
 

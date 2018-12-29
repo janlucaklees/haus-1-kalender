@@ -8,6 +8,7 @@ import WebFont from 'webfontloader';
 import './i18n';
 import Controls from './Controls.jsx';
 import Year from './Year.jsx';
+import { pageDimensions } from './Page.jsx';
 
 
 WebFont.load({
@@ -18,9 +19,21 @@ WebFont.load({
 
 
 const styles = {
+  '@global': {
+    html: {
+      fontSize: '1mm',
+      '@media print': {
+        fontSize: `${ 100 / pageDimensions.height }vh`,
+      },
+    },
+    body: {
+      backgroundColor: '#ddd',
+
+    },
+  },
   container: {
-    width: '430mm',
-    margin: '10mm auto',
+    width: '430rem',
+    margin: '10rem auto',
     fontFamily: "'Noto Sans', sans-serif",
     color: '#0b0020',
     '@media print': {
@@ -30,16 +43,16 @@ const styles = {
   },
   header: {
     backgroundColor: '#fff',
-    padding: '5mm 7mm',
+    padding: '5rem 7rem',
     boxShadow: '2px 2px 10px 0px #888',
     '@media print': {
       display: 'none',
     },
   },
   heading: {
-    fontSize: '16mm',
+    fontSize: '16rem',
     textAlign: 'center',
-    marginBottom: '5mm',
+    marginBottom: '5rem',
   }
 }
 

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { hexColor } from './custom-prop-types.js';
 
 
-const pageDimensions = {
+const pageOuterDimensions = {
   width: 210,
   height: 297,
   padding: {
@@ -17,12 +17,20 @@ const pageDimensions = {
   }
 };
 
+const pageDimensions = Object.assign({}, pageOuterDimensions, {
+  canvas: getPageInnerDimensions( pageOuterDimensions ),
+});
+
 const styles = {
+  '@global': {
+    '@page': {
+      margin: 0,
+      size: `${ pageDimensions.width }mm ${ pageDimensions.height }mm`,
+    },
+  },
   page: {
-    width: `${ pageDimensions.width }mm`,
-    height: `${ pageDimensions.height }mm`,
-
-
+    width: `${ pageDimensions.width }rem`,
+    height: `${ pageDimensions.height }rem`,
 
     position: 'relative',
     overflow: 'hidden',
@@ -37,6 +45,8 @@ const styles = {
     '@media print': {
       margin: 0,
       boxShadow: 'none',
+      width: '100vw',
+      height: '100vh',
     }
   },
   background: {
@@ -57,10 +67,10 @@ const styles = {
     left: 0,
 
     padding: {
-      top: `${ pageDimensions.padding.top }mm`,
-      right: `${ pageDimensions.padding.right }mm`,
-      bottom: `${ pageDimensions.padding.bottom }mm`,
-      left: `${ pageDimensions.padding.left }mm`,
+      top: `${ pageDimensions.padding.top }rem`,
+      right: `${ pageDimensions.padding.right }rem`,
+      bottom: `${ pageDimensions.padding.bottom }rem`,
+      left: `${ pageDimensions.padding.left }rem`,
     },
   }
 }
@@ -86,5 +96,13 @@ Page.propTypes = {
 }
 
 export default injectSheet(styles)(Page);
+
+
+function getPageInnerDimensions( page ) {
+  return {
+    width: page.width - page.padding.left - page.padding.right,
+    height: page.height - page.padding.top - page.padding.bottom,
+  }
+}
 
 export { pageDimensions };

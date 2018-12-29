@@ -8,8 +8,8 @@ import CalendarPage, { CalendarOption } from './CalendarPage.jsx';
 
 const styles = {
   month: {
-    width: '430mm',
-    margin: '25mm auto',
+    width: '100%',
+    margin: '25rem auto',
     display: 'flex',
     justifyContent: 'space-between',
     '@media print': {
