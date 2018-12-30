@@ -79,7 +79,13 @@ export default translate()( injectSheet( calendarDayStyles )( Day ) );
 const placeholderStyles = {
   rowPlaceholder: {
     visibility: 'hidden',
+    opacity: 0,
   },
+  cellPlaceholder: {
+    borderRightWidth: 0,
+    borderLeftWidth: 0,
+    borderColor: 'transparent',
+  }
 };
 
 class _Placeholder extends React.PureComponent {
@@ -88,10 +94,10 @@ class _Placeholder extends React.PureComponent {
 
     return (
       <tr className={ classNames( classes.rowDay, classes.rowPlaceholder ) }>
-        <td className={ classes.cellDayDate }>
+        <td className={ classNames( classes.cellDayDate, classes.cellPlaceholder ) }>
           &nbsp;
         </td>
-        <td className={ classes.cellDayName }>
+        <td className={ classNames( classes.cellDayName, classes.cellPlaceholder ) }>
           &nbsp;
         </td>
       </tr>
