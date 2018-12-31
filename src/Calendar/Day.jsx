@@ -18,7 +18,7 @@ const calendarDayStyles = {
     backgroundColor: '#eff0f2',
   },
   cell: {
-    borderWidth: '0.2rem',
+    borderWidth: '0.375rem',
     borderStyle: 'solid',
     borderColor: 'black',
     verticalAlign: 'middle',

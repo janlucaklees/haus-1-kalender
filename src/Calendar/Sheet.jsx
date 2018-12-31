@@ -15,8 +15,10 @@ const pageOuterDimensions = {
     right: 5,
     bottom: 5,
     left: 5,
-  }
+  },
 };
+
+const borderWidth = 1;
 
 const pageDimensions = Object.assign({}, pageOuterDimensions, {
   canvas: getPageInnerDimensions( pageOuterDimensions ),
@@ -37,6 +39,11 @@ const styles = {
     overflow: 'hidden',
     pageBreakAfter: 'always',
 
+    // apparently this border fixes render bugs in ff (like what?!)
+    borderWidth: `${ borderWidth }rem`,
+    borderStyle: 'solid',
+    borderColor: props => props.backgroundPrintColor,
+
     backgroundColor: '#fff',
     boxShadow: '2px 2px 10px 0px #888',
     '-webkit-print-color-adjust': 'exact !important',
@@ -56,6 +63,12 @@ const styles = {
       right: `${ pageDimensions.padding.right }rem`,
       bottom: `${ pageDimensions.padding.bottom }rem`,
       left: `${ pageDimensions.padding.left }rem`,
+    },
+    margin: {
+      top: `${ - borderWidth }rem`,
+      right: `${ - borderWidth }rem`,
+      bottom: `${ - borderWidth }rem`,
+      left: `${ - borderWidth }rem`,
     },
   }
 }
