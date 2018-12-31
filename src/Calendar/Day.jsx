@@ -5,23 +5,36 @@ import { translate } from 'react-i18next';
 import moment from  'moment';
 import classNames from 'classnames';
 
+import WithPrintableBackground from './WithPrintableBackground.jsx';
+import browser from '../browser.js';
+
+
+const weekdayBackgroundColor = [
+  '#eff0f2',
+  '#ffffff',
+  '#ffffff',
+  '#ffffff',
+  '#ffffff',
+  '#ffffff',
+  '#f7f8fb',
+];
 
 const calendarDayStyles = {
   rowDay: {
     fontSize: `4.4rem`,
     backgroundColor: '#fff',
   },
-  saturday: {
-    backgroundColor: '#f7f8fb',
-  },
-  sunday: {
-    backgroundColor: '#eff0f2',
-  },
+  sunday: { backgroundColor: weekdayBackgroundColor[ 0 ] },
+  saturday: { backgroundColor: weekdayBackgroundColor[ 6 ] },
   cell: {
     borderWidth: '0.375rem',
     borderStyle: 'solid',
     borderColor: 'black',
     verticalAlign: 'middle',
+    position: 'relative',
+  },
+  cellInner: {
+    paddingTop: '1rem',
   },
   cellDayDate: {
     extend: 'cell',
@@ -46,7 +59,17 @@ class Day extends React.PureComponent {
     let cells = [];
     for( let i = 0; i < numberOfOptions; i++ ){
       cells.push(
-        <td className={ classes.cell } key={ date.format( 'YYYY-MM-DD' ) + `_${ i }` }></td>
+        <td className={ classes.cell } key={ date.format( 'YYYY-MM-DD' ) + `_${ i }` }>
+          { ["edge", "firefox"].includes( browser.name ) ?
+            <>
+              <WithPrintableBackground
+                backgroundColor={ weekdayBackgroundColor[ date.day() ] }>
+              </WithPrintableBackground>
+              &nbsp;
+            </> : <>
+            </>
+          }
+        </td>
       );
     }
 
@@ -57,10 +80,32 @@ class Day extends React.PureComponent {
     return (
       <tr className={ classNames( classes.rowDay, weekendHighlight ) }>
         <td className={ classes.cellDayDate }>
-          { date.format( 'DD' ) }.
+          { ["edge", "firefox"].includes( browser.name ) ?
+            <>
+              <WithPrintableBackground
+                backgroundColor={ weekdayBackgroundColor[ date.day() ] }
+                className={ classes.cellInner }>
+                { date.format( 'DD' ) }.
+              </WithPrintableBackground>
+              &nbsp;
+            </> : <>
+              { date.format( 'DD' ) }.
+            </>
+          }
         </td>
         <td className={ classes.cellDayName }>
-          { this.props.t( 'day_names.' + date.day() + '.abbrev' ) }
+          { ["edge", "firefox"].includes( browser.name ) ?
+            <>
+              <WithPrintableBackground
+                backgroundColor={ weekdayBackgroundColor[ date.day() ] }
+                className={ classes.cellInner }>
+                { this.props.t( 'day_names.' + date.day() + '.abbrev' ) }
+              </WithPrintableBackground>
+              &nbsp;
+            </> : <>
+              { this.props.t( 'day_names.' + date.day() + '.abbrev' ) }
+            </>
+          }
         </td>
         { cells }
       </tr>

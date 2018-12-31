@@ -32,7 +32,7 @@ class Month extends React.PureComponent {
           year={ year }
           monthIndex={ monthIndex }
           label={ t( 'floors.ground.abbrev_label' ) }
-          backgroundPrintColor='#e7f0ff'>
+          backgroundColor='#e7f0ff'>
           <Option
             label={       t( 'floors.ground.options.forenoon.label' ) }
             description={ t( 'floors.ground.options.forenoon.description' ) } />
@@ -54,7 +54,7 @@ class Month extends React.PureComponent {
           year={ year }
           monthIndex={ monthIndex }
           label={ t( 'floors.first.abbrev_label' ) }
-          backgroundPrintColor='#e7ffdc'>
+          backgroundColor='#e7ffdc'>
           <Option
             label={       t( 'floors.first.options.guest_room_1.label' ) }
             description={ t( 'floors.first.options.guest_room_1.description' ) } />

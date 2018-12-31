@@ -60,7 +60,7 @@ const calendarPageSyles = {
 }
 class Page extends React.PureComponent {
   render() {
-    let { classes, t, className, label, year, monthIndex, children, backgroundPrintColor } = this.props;
+    let { classes, t, className, label, year, monthIndex, children, backgroundColor } = this.props;
 
     let date = moment( [ year, monthIndex ] );
     let numberOfOptions = children.length;
@@ -86,7 +86,7 @@ class Page extends React.PureComponent {
     }
 
     return (
-      <Sheet className={ className } backgroundPrintColor={ backgroundPrintColor }>
+      <Sheet className={ className } backgroundColor={ backgroundColor }>
         <table className={ classes.table }>
           <thead>
             <tr>
@@ -128,7 +128,7 @@ Page.propTypes = {
   year: PropTypes.number.isRequired,
   monthIndex: PropTypes.number.isRequired,
   children: PropTypes.arrayOf( PropTypes.shape( { type: PropTypes.oneOf( [ Option ] ) } ) ).isRequired,
-  backgroundPrintColor: hexColor,
+  backgroundColor: hexColor,
 };
 
 export default translate()( injectSheet( calendarPageSyles )( Page ) );

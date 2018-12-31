@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "classnames": "^2.2.6",
+    "detect-browser": "^3.0.1",
     "i18next": "^13.0.0",
     "moment": "^2.23.0",
     "prop-types": "^15.6.2",
