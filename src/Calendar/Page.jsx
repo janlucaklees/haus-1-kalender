@@ -4,7 +4,7 @@ import injectSheet from 'react-jss';
 import { translate } from 'react-i18next';
 import moment from  'moment';
 
-import Sheet, { pageDimensions } from './Sheet.jsx';
+import Sheet from './Sheet.jsx';
 import Option from './Option.jsx';
 import Day, { Placeholder } from './Day.jsx';
 
