@@ -8,7 +8,7 @@ import browser from '../browser.js';
 import { hexColor } from '../custom-prop-types.js';
 
 
-const pageOuterDimensions = {
+export const pageDimensions = {
 	width: 210,
 	height: 297,
 	padding: {
@@ -20,17 +20,6 @@ const pageOuterDimensions = {
 };
 
 const borderWidth = 1;
-
-function getPageInnerDimensions( page ) {
-	return {
-		width:  page.width  - page.padding.left - page.padding.right,
-		height: page.height - page.padding.top  - page.padding.bottom,
-	}
-}
-
-export const pageDimensions = Object.assign({}, pageOuterDimensions, {
-	canvas: getPageInnerDimensions( pageOuterDimensions ),
-});
 
 const useStyles = createUseStyles({
 	page: {
