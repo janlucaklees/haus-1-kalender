@@ -113,17 +113,11 @@ function Sheet({ className, backgroundColor, children }){
 
 	return (
 		<div className={ classNames( classes.page, pageStyles, className ) }>
-			{ ( isFirefox || isEdge ) ?
-				<>
-					<WithPrintableBackground
-						backgroundColor={ backgroundColor }
-						className={ classNames( classes.foreground, foregroundStyles ) }>
-						{ children }
-					</WithPrintableBackground>
-				</> : <>
-					{ children }
-				</>
-			}
+			<WithPrintableBackground
+				backgroundColor={ backgroundColor }
+				className={ classNames( classes.foreground, foregroundStyles ) }>
+				{ children }
+			</WithPrintableBackground>
 		</div>
 	);
 }

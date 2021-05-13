@@ -6,7 +6,6 @@ import moment from  'moment';
 import classNames from 'classnames';
 
 import WithPrintableBackground from './WithPrintableBackground.jsx';
-import browser from '../browser.js';
 
 
 const weekdayBackgroundColor = [
@@ -59,15 +58,13 @@ function Day({ date, numberOfOptions }) {
 	const cells = [];
 	for( let i = 0; i < numberOfOptions; i++ ){
 		cells.push(
-			<td className={ classes.cell } key={ date.format( 'YYYY-MM-DD' ) + `_${ i }` }>
-				{ ["edge", "firefox"].includes( browser.name ) && (
-					<>
-						<WithPrintableBackground
-							backgroundColor={ weekdayBackgroundColor[ date.day() ] }>
-						</WithPrintableBackground>
-						&nbsp;
-					</>
-				) }
+			<td
+				key={ date.format( 'YYYY-MM-DD' ) + `_${ i }` }
+				className={ classes.cell }>
+				<WithPrintableBackground
+					backgroundColor={ weekdayBackgroundColor[ date.day() ] }>
+					&nbsp;
+				</WithPrintableBackground>
 			</td>
 		);
 	}
@@ -80,33 +77,19 @@ function Day({ date, numberOfOptions }) {
 		<tr className={ classNames( classes.rowDay, weekendHighlight ) }>
 
 			<td className={ classes.cellDayDate }>
-				{ ["edge", "firefox"].includes( browser.name ) ?
-					<>
-						<WithPrintableBackground
-							backgroundColor={ weekdayBackgroundColor[ date.day() ] }
-							className={ classes.cellInner }>
-							{ date.format( 'DD' ) }.
-						</WithPrintableBackground>
-						&nbsp;
-					</> : <>
-						{ date.format( 'DD' ) }.
-					</>
-				}
+				<WithPrintableBackground
+					className={ classes.cellInner }
+					backgroundColor={ weekdayBackgroundColor[ date.day() ] } >
+					{ date.format( 'DD' ) }.
+				</WithPrintableBackground>
 			</td>
 
 			<td className={ classes.cellDayName }>
-				{ ["edge", "firefox"].includes( browser.name ) ?
-					<>
-						<WithPrintableBackground
-							backgroundColor={ weekdayBackgroundColor[ date.day() ] }
-							className={ classes.cellInner }>
-							{ t( 'day_names.' + date.day() + '.abbrev' ) }
-						</WithPrintableBackground>
-						&nbsp;
-					</> : <>
-						{ t( 'day_names.' + date.day() + '.abbrev' ) }
-					</>
-				}
+				<WithPrintableBackground
+					backgroundColor={ weekdayBackgroundColor[ date.day() ] }
+					className={ classes.cellInner }>
+					{ t( 'day_names.' + date.day() + '.abbrev' ) }
+				</WithPrintableBackground>
 			</td>
 
 			{ cells }
