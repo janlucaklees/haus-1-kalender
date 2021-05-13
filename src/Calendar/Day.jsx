@@ -34,6 +34,7 @@ export const useStyles = createUseStyles({
 	},
 	cellInner: {
 		paddingTop: '1rem',
+		paddingLeft: '0.66rem',
 	},
 	cellDayDate: {
 		extend: 'cell',
