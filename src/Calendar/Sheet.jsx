@@ -33,12 +33,6 @@ export const pageDimensions = Object.assign({}, pageOuterDimensions, {
 });
 
 const useStyles = createUseStyles({
-	'@global': {
-		'@page': {
-			margin: 0,
-			size: `${ pageDimensions.width }mm ${ pageDimensions.height }mm`,
-		},
-	},
 	page: {
 		width:  `${ pageDimensions.width }rem`,
 		height: `${ pageDimensions.height }rem`,
