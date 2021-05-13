@@ -5,21 +5,22 @@ import moment from  'moment';
 import Month from './Month.jsx';
 
 
-class Calendar extends React.PureComponent {
-  render() {
-    let { year } = this.props;
+function Calendar({ year }) {
+	let months = new Array();
+	for( let monthIndex = 0; monthIndex < 12; monthIndex++ ) {
+		months.push(
+			<Month
+				key={ 'month_' + monthIndex }
+				year={ year }
+				monthIndex={ monthIndex } />
+		);
+	}
 
-    let months = new Array();
-    for( let monthIndex = 0; monthIndex < 12; monthIndex++) {
-      months.push( <Month year={ year } monthIndex={ monthIndex } key={ 'month_' + monthIndex } /> );
-    }
-
-    return (
-      <div className="calendar">
-        { months }
-      </div>
-    );
-  }
+	return (
+		<div className="calendar">
+			{ months }
+		</div>
+	);
 }
 
 Calendar.propTypes = {
@@ -31,3 +32,4 @@ Calendar.defaultProps = {
 };
 
 export default Calendar;
+

@@ -1,74 +1,80 @@
 {
-  "community-house-calendar": {
-    "title": "Haus 1 Kalender {{year}}",
-    "month_names": [
-      "Januar",
-      "Februar",
-      "März",
-      "April",
-      "Mai",
-      "Juni",
-      "Juli",
-      "August",
-      "September",
-      "Oktober",
-      "November",
-      "Dezember"
-    ],
-    "day_names": [
-      { "name": "Sonntag", "abbrev": "So" },
-      { "name": "Montag", "abbrev": "Mo" },
-      { "name": "Dienstag", "abbrev": "Di" },
-      { "name": "Mittwoch", "abbrev": "Mi" },
-      { "name": "Donnerstag", "abbrev": "Do" },
-      { "name": "Freitag", "abbrev": "Fr" },
-      { "name": "Samstag", "abbrev": "Sa" }
-    ],
-    "floors": {
-      "ground": {
-        "label": "Erdgeschoss",
-        "abbrev_label": "EG",
-        "options": {
-          "forenoon": {
-            "label": "vormittags",
-            "description": "9-13 Uhr (4 Std)"
-          },
-          "noon": {
-            "label": "mittags",
-            "description": "13-16:30 (3,5 Std.)"
-          },
-          "afternoon": {
-            "label": "nachmittags",
-            "description": "16:30-20 Uhr (3,5 Std)"
-          },
-          "evening": {
-            "label": "abends",
-            "description": "20-23 Uhr (3 Std)"
-          },
-          "night": {
-            "label": "nachts",
-            "description": "23-9 Uhr (10 Std)"
-          }
-        }
-      },
-      "first": {
-        "label": "Obergeschoss",
-        "abbrev_label": "OG",
-        "options": {
-          "guest_room_1": {
-            "label": "Gästezimmer 1",
-            "description": "rechts"
-          },
-          "guest_room_2": {
-            "label": "Gästezimmer 2",
-            "description": "mitte"
-          },
-          "creative_room": {
-            "label": "Kreativraum",
-            "description": "links"
-          }
-        }
-      }
-    }
-  }
+	"community-house-calendar": {
+		"document": {
+			"title": "Haus-1 Kalender {{year}}"
+		},
+		"page": {
+			"title": "Der Haus-1 Kalender zum selber Drucken",
+			"select_year": "Jahr auswählen:"
+		},
+		"month_names": [
+			"Januar",
+			"Februar",
+			"März",
+			"April",
+			"Mai",
+			"Juni",
+			"Juli",
+			"August",
+			"September",
+			"Oktober",
+			"November",
+			"Dezember"
+		],
+		"day_names": [
+			{ "name": "Sonntag", "abbrev": "So" },
+			{ "name": "Montag", "abbrev": "Mo" },
+			{ "name": "Dienstag", "abbrev": "Di" },
+			{ "name": "Mittwoch", "abbrev": "Mi" },
+			{ "name": "Donnerstag", "abbrev": "Do" },
+			{ "name": "Freitag", "abbrev": "Fr" },
+			{ "name": "Samstag", "abbrev": "Sa" }
+		],
+		"floors": {
+			"ground": {
+				"label": "Erdgeschoss",
+				"abbrev_label": "EG",
+				"options": {
+					"forenoon": {
+						"label": "vormittags",
+						"description": "9-13 Uhr (4 Std)"
+					},
+					"noon": {
+						"label": "mittags",
+						"description": "13-16:30 (3,5 Std.)"
+					},
+					"afternoon": {
+						"label": "nachmittags",
+						"description": "16:30-20 Uhr (3,5 Std)"
+					},
+					"evening": {
+						"label": "abends",
+						"description": "20-23 Uhr (3 Std)"
+					},
+					"night": {
+						"label": "nachts",
+						"description": "23-9 Uhr (10 Std)"
+					}
+				}
+			},
+			"first": {
+				"label": "Obergeschoss",
+				"abbrev_label": "OG",
+				"options": {
+					"guest_room_1": {
+						"label": "Gästezimmer 1",
+						"description": "rechts"
+					},
+					"guest_room_2": {
+						"label": "Gästezimmer 2",
+						"description": "mitte"
+					},
+					"creative_room": {
+						"label": "Kreativraum",
+						"description": "links"
+					}
+				}
+			}
+		}
+	}
 }

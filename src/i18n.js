@@ -1,10 +1,10 @@
 import i18n from 'i18next';
-import { reactI18nextModule } from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 
 import locale_de_DE from './locales/de-DE.json';
 
 i18n
-  .use(reactI18nextModule)
+  .use(initReactI18next)
   .init({
     resources: {
       'de-DE': locale_de_DE,
@@ -17,3 +17,4 @@ i18n
   });
 
 export default i18n;
+
