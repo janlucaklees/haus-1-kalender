@@ -1,35 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import { createUseStyles } from 'react-jss'
+import { useTranslation } from 'react-i18next';
 import moment from  'moment';
 
 
-const styles = {
-  container: {
-    textAlign: 'center',
-    fontSize: '6rem',
-  }
-}
+const useStyles = createUseStyles({
+	container: {
+		textAlign: 'center',
+		fontSize: '6rem',
+	}
+});
 
-class Controls extends React.PureComponent {
-  render() {
-    let { classes } = this.props;
-    let currentYear = moment().year();
-    return (
-      <div className={ classes.container }>
-        Jahr auswählen: &nbsp;
-        <select onChange={ event => this.props.onYearChange( event.target.value ) }>
-          <option value={ currentYear }>{ currentYear }</option>
-          <option value={ currentYear + 1 }>{ currentYear + 1 }</option>
-          <option value={ currentYear + 2 }>{ currentYear + 2 }</option>
-        </select>
-      </div>
-    );
-  }
+function Controls({ onYearChange }) {
+	const classes = useStyles();
+	const { t } = useTranslation();
+
+	const currentYear = moment().year();
+
+	return (
+		<div className={ classes.container }>
+			{ t('page.select_year') }
+			&nbsp;
+			<select onChange={ event => onYearChange( event.target.value ) }>
+				<option value={ currentYear }>{ currentYear }</option>
+				<option value={ currentYear + 1 }>{ currentYear + 1 }</option>
+				<option value={ currentYear + 2 }>{ currentYear + 2 }</option>
+			</select>
+		</div>
+	);
 }
 
 Controls.propTypes = {
-  onYearChange: PropTypes.func,
+	onYearChange: PropTypes.func,
 }
 
-export default injectSheet( styles )( Controls );
+export default Controls;
+
