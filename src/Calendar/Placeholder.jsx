@@ -24,8 +24,12 @@ function Placeholder() {
 
 	return (
 		<tr className={ classNames( dayClasses.rowDay, classes.rowPlaceholder ) }>
-			<td className={ classNames( dayClasses.cellDayDate, classes.cellPlaceholder ) } />
-			<td className={ classNames( dayClasses.cellDayName, classes.cellPlaceholder ) } />
+			<td className={ classNames( dayClasses.cellDayDate, classes.cellPlaceholder ) }>
+				&nbsp;
+			</td>
+			<td className={ classNames( dayClasses.cellDayName, classes.cellPlaceholder ) }>
+				&nbsp;
+			</td>
 		</tr>
 	);
 }
