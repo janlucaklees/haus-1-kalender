@@ -1,11 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss'
 import moment from  'moment';
 
 import Month from './Month.jsx';
 
 
+export const useStyles = createUseStyles({
+	calendar: {},
+});
+
 function Calendar({ year }) {
+	const classes = useStyles();
+
 	let months = new Array();
 	for( let monthIndex = 0; monthIndex < 12; monthIndex++ ) {
 		months.push(
@@ -17,7 +24,7 @@ function Calendar({ year }) {
 	}
 
 	return (
-		<div className="calendar">
+		<div className={ classes.calendar }>
 			{ months }
 		</div>
 	);
