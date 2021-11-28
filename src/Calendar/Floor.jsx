@@ -65,7 +65,7 @@ function Floor({ className, label, year, monthIndex, children, backgroundColor }
 	const { t } = useTranslation();
 
 	const date = moment( [ year, monthIndex ] );
-	const numberOfOptions = children.length;
+	const numberOfTimeSlots = children.length;
 
 	// Render days
 	const days = new Array();
@@ -77,7 +77,7 @@ function Floor({ className, label, year, monthIndex, children, backgroundColor }
 		days.push(
 			<Day
 				date={ dayDate }
-				numberOfOptions={ numberOfOptions }
+				numberOfTimeSlots={ numberOfTimeSlots }
 				key={ dayDate.format( 'YYYY-MM-DD' ) } />
 		);
 	}
@@ -104,7 +104,7 @@ function Floor({ className, label, year, monthIndex, children, backgroundColor }
 					</tr>
 
 					<tr className={ classes.rowHeader }>
-						<th className={ classes.header } colSpan={ 2 + numberOfOptions }>
+						<th className={ classes.header } colSpan={ 2 + numberOfTimeSlots }>
 							<h1>
 								<span className={ classes.headerMonthNumber }>
 									{ date.format( '.MM.YYYY' ) }

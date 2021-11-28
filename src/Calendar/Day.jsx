@@ -51,13 +51,13 @@ export const useStyles = createUseStyles({
 	},
 });
 
-function Day({ date, numberOfOptions }) {
+function Day({ date, numberOfTimeSlots }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
 	// generate cells for each option one
 	const cells = [];
-	for( let i = 0; i < numberOfOptions; i++ ){
+	for( let i = 0; i < numberOfTimeSlots; i++ ){
 		cells.push(
 			<td
 				key={ date.format( 'YYYY-MM-DD' ) + `_${ i }` }
@@ -101,7 +101,7 @@ function Day({ date, numberOfOptions }) {
 
 Day.propTypes = {
 	date: PropTypes.instanceOf( moment ).isRequired,
-	numberOfOptions: PropTypes.number.isRequired,
+	numberOfTimeSlots: PropTypes.number.isRequired,
 }
 
 export default Day;
