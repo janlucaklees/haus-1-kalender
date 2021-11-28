@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss'
 import { useTranslation } from 'react-i18next';
 
-import Page from './Page.jsx';
-import Option from './Option.jsx';
+import Floor from './Floor.jsx';
+import TimeSlot from './TimeSlot.jsx';
 
 
 const useStyles = createUseStyles({
@@ -21,50 +21,50 @@ const useStyles = createUseStyles({
 	}
 });
 
-function Month({ year, monthIndex }) {
+function Month({ year, month }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
 	return (
 		<div className={ classes.month }>
 
-			<Page
+			<Floor
 				year={ year }
-				monthIndex={ monthIndex }
+				month={ month }
 				label={ t( 'floors.ground.abbrev_label' ) }
 				backgroundColor='#e7f0ff'>
-				<Option
+				<TimeSlot
 					label={       t( 'floors.ground.options.forenoon.label' ) }
 					description={ t( 'floors.ground.options.forenoon.description' ) } />
-				<Option
+				<TimeSlot
 					label={       t( 'floors.ground.options.noon.label' ) }
 					description={ t( 'floors.ground.options.noon.description' ) } />
-				<Option
+				<TimeSlot
 					label={       t( 'floors.ground.options.afternoon.label' ) }
 					description={ t( 'floors.ground.options.afternoon.description' ) } />
-				<Option
+				<TimeSlot
 					label={       t( 'floors.ground.options.evening.label' ) }
 					description={ t( 'floors.ground.options.evening.description' ) } />
-				<Option
+				<TimeSlot
 					label={       t( 'floors.ground.options.night.label' ) }
 					description={ t( 'floors.ground.options.night.description' ) } />
-			</Page>
+			</Floor>
 
-			<Page
+			<Floor
 				year={ year }
-				monthIndex={ monthIndex }
+				month={ month }
 				label={ t( 'floors.first.abbrev_label' ) }
 				backgroundColor='#e7ffdc'>
-				<Option
+				<TimeSlot
 					label={       t( 'floors.first.options.guest_room_1.label' ) }
 					description={ t( 'floors.first.options.guest_room_1.description' ) } />
-				<Option
+				<TimeSlot
 					label={       t( 'floors.first.options.guest_room_2.label' ) }
 					description={ t( 'floors.first.options.guest_room_2.description' ) } />
-				<Option
+				<TimeSlot
 					label={       t( 'floors.first.options.creative_room.label' ) }
 					description={ t( 'floors.first.options.creative_room.description' ) } />
-			</Page>
+			</Floor>
 
 		</div>
 	);
@@ -72,7 +72,7 @@ function Month({ year, monthIndex }) {
 
 Month.propTypes = {
 	year: PropTypes.number.isRequired,
-	monthIndex: PropTypes.number.isRequired,
+	month: PropTypes.number.isRequired,
 };
 
 export default Month;

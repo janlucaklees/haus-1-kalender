@@ -8,7 +8,7 @@ import WebFont from 'webfontloader';
 import i18n from './i18n';
 import Controls from './Controls.jsx';
 import Calendar from './Calendar/Calendar.jsx';
-import { pageDimensions } from './Calendar/Sheet.jsx';
+import { pageDimensions } from './Print/A4Page.jsx';
 
 
 WebFont.load({
@@ -100,4 +100,3 @@ ReactDOM.render(
 document.title = i18n.t( 'document.title', { year: moment().year() } );
 
 module.hot.accept();
-

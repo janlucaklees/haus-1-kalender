@@ -4,12 +4,12 @@ import { createUseStyles } from 'react-jss'
 import { useTranslation } from 'react-i18next';
 import moment from  'moment';
 
-import Sheet from './Sheet.jsx';
-import Option from './Option.jsx';
+import A4Page from '../Print/A4Page.jsx';
+import TimeSlot from './TimeSlot.jsx';
 import Day from './Day.jsx';
-import Placeholder from './Placeholder.jsx';
 
 import { hexColor } from '../custom-prop-types.js';
+import range from "../range";
 
 
 const useStyles = createUseStyles({
@@ -60,40 +60,30 @@ const useStyles = createUseStyles({
 	},
 });
 
-function Page({ className, label, year, monthIndex, children, backgroundColor }) {
+function Floor({ className, label, year, month, children, backgroundColor }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
-	const date = moment( [ year, monthIndex ] );
-	const numberOfOptions = children.length;
+	const date        = moment( [ year, month - 1 ] );
+	const daysInMonth = date.daysInMonth();
+
+	const numberOfTimeSlots = children.length;
 
 	// Render days
-	const days = new Array();
-	let day;
+	const days = range( 31 ).map( day => {
+		const dayDate = date.clone().date( day );
 
-	// Render all days in the month
-	for( day = 1; day <= date.daysInMonth(); day++) {
-		let dayDate = date.clone().date( day );
-		days.push(
+		return (
 			<Day
 				date={ dayDate }
-				numberOfOptions={ numberOfOptions }
+				numberOfTimeSlots={ numberOfTimeSlots }
+				isPlaceholder={ day > daysInMonth }
 				key={ dayDate.format( 'YYYY-MM-DD' ) } />
 		);
-	}
-
-	// Fill in the remaning space with placeholders. This way we always have 31
-	// table rows and the days always have the same height. While being very well
-	// printable and responsive.
-	for( day; day <= 31; day++ ) {
-		let dayDate = date.clone().date( day );
-		days.push(
-			<Placeholder key={ dayDate.format( 'YYYY-MM-DD' ) } />
-		);
-	}
+	})
 
 	return (
-		<Sheet className={ className } backgroundColor={ backgroundColor }>
+		<A4Page className={ className } backgroundColor={ backgroundColor }>
 			<table className={ classes.table }>
 
 				<thead>
@@ -104,7 +94,7 @@ function Page({ className, label, year, monthIndex, children, backgroundColor })
 					</tr>
 
 					<tr className={ classes.rowHeader }>
-						<th className={ classes.header } colSpan={ 2 + numberOfOptions }>
+						<th className={ classes.header } colSpan={ 2 + numberOfTimeSlots }>
 							<h1>
 								<span className={ classes.headerMonthNumber }>
 									{ date.format( '.MM.YYYY' ) }
@@ -133,18 +123,18 @@ function Page({ className, label, year, monthIndex, children, backgroundColor })
 				</tbody>
 
 			</table>
-		</Sheet>
+		</A4Page>
 	);
 }
 
-Page.propTypes = {
+Floor.propTypes = {
 	year: PropTypes.number.isRequired,
-	monthIndex: PropTypes.number.isRequired,
+	month: PropTypes.number.isRequired,
 	children: PropTypes.arrayOf(
-		PropTypes.shape({ type: PropTypes.oneOf([ Option ]) })
+		PropTypes.shape({ type: PropTypes.oneOf([ TimeSlot ]) })
 	).isRequired,
 	backgroundColor: hexColor,
 };
 
-export default Page;
+export default Floor;
 

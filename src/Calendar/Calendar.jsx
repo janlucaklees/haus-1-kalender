@@ -1,24 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { createUseStyles } from 'react-jss'
 import moment from  'moment';
 
 import Month from './Month.jsx';
+import range from "../range";
 
+
+export const useStyles = createUseStyles({
+	calendar: {},
+});
 
 function Calendar({ year }) {
-	let months = new Array();
-	for( let monthIndex = 0; monthIndex < 12; monthIndex++ ) {
-		months.push(
-			<Month
-				key={ 'month_' + monthIndex }
-				year={ year }
-				monthIndex={ monthIndex } />
-		);
-	}
+	const classes = useStyles();
 
 	return (
-		<div className="calendar">
-			{ months }
+		<div className={ classes.calendar }>
+
+			{ range(12).map( month => (
+				<Month
+					key={ 'month_' + month }
+					year={ year }
+					month={ month } />
+			) ) }
+
 		</div>
 	);
 }
