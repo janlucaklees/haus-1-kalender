@@ -37,8 +37,8 @@ const useStyles = createUseStyles({
 		'@media print': {
 			margin: 0,
 			boxShadow: 'none',
-			width: '100vw',
-			height: '100vh',
+			width: `${pageDimensions.width}mm`,
+			height: `${pageDimensions.height}mm`,
 		}
 	},
 	pageStyledBackground: {
