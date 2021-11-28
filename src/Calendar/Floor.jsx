@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import moment from  'moment';
 
 import Sheet from './Sheet.jsx';
-import Option from './Option.jsx';
+import TimeSlot from './TimeSlot.jsx';
 import Day from './Day.jsx';
 import Placeholder from './Placeholder.jsx';
 
@@ -60,7 +60,7 @@ const useStyles = createUseStyles({
 	},
 });
 
-function Page({ className, label, year, monthIndex, children, backgroundColor }) {
+function Floor({ className, label, year, monthIndex, children, backgroundColor }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
@@ -137,14 +137,14 @@ function Page({ className, label, year, monthIndex, children, backgroundColor })
 	);
 }
 
-Page.propTypes = {
+Floor.propTypes = {
 	year: PropTypes.number.isRequired,
 	monthIndex: PropTypes.number.isRequired,
 	children: PropTypes.arrayOf(
-		PropTypes.shape({ type: PropTypes.oneOf([ Option ]) })
+		PropTypes.shape({ type: PropTypes.oneOf([ TimeSlot ]) })
 	).isRequired,
 	backgroundColor: hexColor,
 };
 
-export default Page;
+export default Floor;
 

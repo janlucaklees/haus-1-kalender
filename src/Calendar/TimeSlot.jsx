@@ -20,7 +20,7 @@ const useStyles = createUseStyles({
 	},
 });
 
-function Option({ label, description }) {
+function TimeSlot({ label, description }) {
 	const classes = useStyles();
 
 	return (
@@ -31,10 +31,10 @@ function Option({ label, description }) {
 	);
 }
 
-Option.propTypes = {
+TimeSlot.propTypes = {
 	label: PropTypes.string.isRequired,
 	description: PropTypes.string,
 };
 
-export default Option;
+export default TimeSlot;
 
