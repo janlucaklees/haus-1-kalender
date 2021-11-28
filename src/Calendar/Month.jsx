@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
 	}
 });
 
-function Month({ year, monthIndex }) {
+function Month({ year, month }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
@@ -30,7 +30,7 @@ function Month({ year, monthIndex }) {
 
 			<Floor
 				year={ year }
-				monthIndex={ monthIndex }
+				month={ month }
 				label={ t( 'floors.ground.abbrev_label' ) }
 				backgroundColor='#e7f0ff'>
 				<TimeSlot
@@ -52,7 +52,7 @@ function Month({ year, monthIndex }) {
 
 			<Floor
 				year={ year }
-				monthIndex={ monthIndex }
+				month={ month }
 				label={ t( 'floors.first.abbrev_label' ) }
 				backgroundColor='#e7ffdc'>
 				<TimeSlot
@@ -72,7 +72,7 @@ function Month({ year, monthIndex }) {
 
 Month.propTypes = {
 	year: PropTypes.number.isRequired,
-	monthIndex: PropTypes.number.isRequired,
+	month: PropTypes.number.isRequired,
 };
 
 export default Month;

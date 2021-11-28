@@ -60,11 +60,11 @@ const useStyles = createUseStyles({
 	},
 });
 
-function Floor({ className, label, year, monthIndex, children, backgroundColor }) {
+function Floor({ className, label, year, month, children, backgroundColor }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
-	const date = moment( [ year, monthIndex ] );
+	const date = moment( [ year, month - 1 ] );
 	const numberOfTimeSlots = children.length;
 
 	// Render days
@@ -139,7 +139,7 @@ function Floor({ className, label, year, monthIndex, children, backgroundColor }
 
 Floor.propTypes = {
 	year: PropTypes.number.isRequired,
-	monthIndex: PropTypes.number.isRequired,
+	month: PropTypes.number.isRequired,
 	children: PropTypes.arrayOf(
 		PropTypes.shape({ type: PropTypes.oneOf([ TimeSlot ]) })
 	).isRequired,

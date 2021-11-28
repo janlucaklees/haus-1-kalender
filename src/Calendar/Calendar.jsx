@@ -4,10 +4,7 @@ import { createUseStyles } from 'react-jss'
 import moment from  'moment';
 
 import Month from './Month.jsx';
-
-
-// Generating an array with values 0 to 11.
-const monthIndices = Array.from(Array(12).keys());
+import range from "../range";
 
 
 export const useStyles = createUseStyles({
@@ -20,11 +17,11 @@ function Calendar({ year }) {
 	return (
 		<div className={ classes.calendar }>
 
-			{ monthIndices.map( monthIndex => (
+			{ range(12).map( month => (
 				<Month
-					key={ 'month_' + monthIndex }
+					key={ 'month_' + month }
 					year={ year }
-					monthIndex={ monthIndex } />
+					month={ month } />
 			) ) }
 
 		</div>
