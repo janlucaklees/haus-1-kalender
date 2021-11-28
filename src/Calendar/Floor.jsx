@@ -7,9 +7,9 @@ import moment from  'moment';
 import A4Page from '../Print/A4Page.jsx';
 import TimeSlot from './TimeSlot.jsx';
 import Day from './Day.jsx';
-import Placeholder from './Placeholder.jsx';
 
 import { hexColor } from '../custom-prop-types.js';
+import range from "../range";
 
 
 const useStyles = createUseStyles({
@@ -64,33 +64,23 @@ function Floor({ className, label, year, month, children, backgroundColor }) {
 	const classes = useStyles();
 	const { t } = useTranslation();
 
-	const date = moment( [ year, month - 1 ] );
+	const date        = moment( [ year, month - 1 ] );
+	const daysInMonth = date.daysInMonth();
+
 	const numberOfTimeSlots = children.length;
 
 	// Render days
-	const days = new Array();
-	let day;
+	const days = range( 31 ).map( day => {
+		const dayDate = date.clone().date( day );
 
-	// Render all days in the month
-	for( day = 1; day <= date.daysInMonth(); day++) {
-		let dayDate = date.clone().date( day );
-		days.push(
+		return (
 			<Day
 				date={ dayDate }
 				numberOfTimeSlots={ numberOfTimeSlots }
+				isPlaceholder={ day > daysInMonth }
 				key={ dayDate.format( 'YYYY-MM-DD' ) } />
 		);
-	}
-
-	// Fill in the remaning space with placeholders. This way we always have 31
-	// table rows and the days always have the same height. While being very well
-	// printable and responsive.
-	for( day; day <= 31; day++ ) {
-		let dayDate = date.clone().date( day );
-		days.push(
-			<Placeholder key={ dayDate.format( 'YYYY-MM-DD' ) } />
-		);
-	}
+	})
 
 	return (
 		<A4Page className={ className } backgroundColor={ backgroundColor }>
