@@ -48,11 +48,13 @@ const useStyles = createUseStyles({
 			height: `${pageDimensions.height}mm`,
 		}
 	},
-	pageFireFox: {
+	firefoxPage: {
 		// apparently this border fixes render bugs in ff (like what?!)
 		borderWidth: `${ borderWidth }rem`,
 		borderStyle: 'solid',
 		borderColor: props => props.backgroundColor,
+		// Firefox does not print backgrounds by default. But with this hack, we force him to.
+		boxShadow: props => `inset 0px 0px 0px 100vh ${props.backgroundColor}`,
 	},
 });
 
@@ -60,7 +62,7 @@ function A4Page({ className, backgroundColor, children }){
 	const classes = useStyles({ backgroundColor });
 
 	const pageStyles = {
-		[ classes.pageFireFox ]: browser.name === 'firefox',
+		[ classes.firefoxPage ]: browser.name === 'firefox',
 	};
 
 	return (

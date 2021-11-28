@@ -4,6 +4,7 @@ import { createUseStyles } from 'react-jss'
 import classNames from 'classnames';
 
 import range from "../range";
+import browser from "../browser";
 
 
 const styles = {
@@ -18,21 +19,30 @@ const styles = {
 	},
 	invisible: {
 		backgroundColor: 'transparent',
-		visibility: 'hidden',
-		opacity: 0,
-
-		// Hide cell border as well. Somehow opacity and visibility are not hiding it.
-		borderColor: 'transparent',
 	}
 }
 
 export const useStyles = createUseStyles({
 	// Row Styles
 	row: {
-		borderColor: 'black',
+		backgroundColor: props => props.backgroundColor,
 		fontSize: `4.4rem`,
+
+		// For the cells to inherit
+		borderColor: 'black',
 	},
-	...styles,
+	invisible: {
+		backgroundColor: 'transparent',
+		visibility: 'hidden',
+		opacity: 0,
+
+		// Hide cell border as well. Somehow opacity and visibility are not hiding it.
+		borderColor: 'transparent',
+	},
+	firefoxRow: {
+		// Firefox does not print backgrounds by default. But with this hack, we force him to.
+		boxShadow: props => `inset 0px 0px 0px 100vh ${props.backgroundColor}`,
+	},
 
 	// Cell Styles
 	cell: {
@@ -42,7 +52,6 @@ export const useStyles = createUseStyles({
 		verticalAlign: 'middle',
 		position: 'relative',
 	},
-
 	cellDay: {
 		borderRightWidth: 0,
 		paddingRight: 0,
@@ -55,12 +64,15 @@ export const useStyles = createUseStyles({
 });
 
 function Row({ day, dayName, numberOfTimeSlots, style }) {
-	const classes = useStyles();
+	const classes = useStyles({ backgroundColor: styles[style].backgroundColor });
 
-	const backgroundColor = styles[style].backgroundColor;
+	const rowStyles = {
+		[ classes.invisible  ]: style === 'invisible',
+		[ classes.firefoxRow ]: browser.name === 'firefox',
+	};
 
 	return (
-		<tr className={ classNames( classes.row, classes[ style ] ) }>
+		<tr className={ classNames( classes.row, rowStyles ) }>
 
 			<td
 				className={ classNames( classes.cell, classes.cellDay ) }>
