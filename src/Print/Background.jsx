@@ -27,7 +27,7 @@ export const useStyles = createUseStyles({
 	},
 });
 
-function WithPrintableBackground({ className, backgroundColor, children }) {
+function Background({ className, backgroundColor, children }) {
 	const classes = useStyles();
 
 	if(['edge', 'firefox'].includes(browser.name)) {
@@ -46,9 +46,9 @@ function WithPrintableBackground({ className, backgroundColor, children }) {
 	return children;
 }
 
-WithPrintableBackground.propTypes = {
+Background.propTypes = {
 	backgroundColor: hexColor,
 }
 
-export default WithPrintableBackground;
+export default Background;
 

@@ -4,7 +4,7 @@ import { createUseStyles } from 'react-jss'
 import { useTranslation } from 'react-i18next';
 import moment from  'moment';
 
-import Sheet from './Sheet.jsx';
+import A4Page from '../Print/A4Page.jsx';
 import TimeSlot from './TimeSlot.jsx';
 import Day from './Day.jsx';
 import Placeholder from './Placeholder.jsx';
@@ -93,7 +93,7 @@ function Floor({ className, label, year, monthIndex, children, backgroundColor }
 	}
 
 	return (
-		<Sheet className={ className } backgroundColor={ backgroundColor }>
+		<A4Page className={ className } backgroundColor={ backgroundColor }>
 			<table className={ classes.table }>
 
 				<thead>
@@ -133,7 +133,7 @@ function Floor({ className, label, year, monthIndex, children, backgroundColor }
 				</tbody>
 
 			</table>
-		</Sheet>
+		</A4Page>
 	);
 }
 

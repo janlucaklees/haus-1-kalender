@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { createUseStyles } from 'react-jss'
 import classNames from 'classnames';
 
-import WithPrintableBackground from './WithPrintableBackground.jsx';
+import Background from './Background.jsx';
 import browser from '../browser.js';
 import { hexColor } from '../custom-prop-types.js';
 
@@ -78,7 +78,7 @@ const useStyles = createUseStyles({
 	},
 });
 
-function Sheet({ className, backgroundColor, children }){
+function A4Page({ className, backgroundColor, children }){
 	const classes = useStyles({ backgroundColor });
 
 	const isFirefox = browser.name === 'firefox';
@@ -96,22 +96,21 @@ function Sheet({ className, backgroundColor, children }){
 
 	return (
 		<div className={ classNames( classes.page, pageStyles, className ) }>
-			<WithPrintableBackground
+			<Background
 				backgroundColor={ backgroundColor }
 				className={ classNames( classes.foreground, foregroundStyles ) }>
 				{ children }
-			</WithPrintableBackground>
+			</Background>
 		</div>
 	);
 }
 
-Sheet.propTypes = {
+A4Page.propTypes = {
 	backgroundColor: hexColor,
 }
 
-Sheet.defaultProps = {
+A4Page.defaultProps = {
 	backgroundColor: '#ffffff',
 };
 
-export default Sheet;
-
+export default A4Page;

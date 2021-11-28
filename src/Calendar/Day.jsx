@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import moment from  'moment';
 import classNames from 'classnames';
 
-import WithPrintableBackground from './WithPrintableBackground.jsx';
+import Background from '../Print/Background.jsx';
 
 
 const weekdayBackgroundColor = [
@@ -62,10 +62,10 @@ function Day({ date, numberOfOptions }) {
 			<td
 				key={ date.format( 'YYYY-MM-DD' ) + `_${ i }` }
 				className={ classes.cell }>
-				<WithPrintableBackground
+				<Background
 					backgroundColor={ weekdayBackgroundColor[ date.day() ] }>
 					&nbsp;
-				</WithPrintableBackground>
+				</Background>
 			</td>
 		);
 	}
@@ -78,19 +78,19 @@ function Day({ date, numberOfOptions }) {
 		<tr className={ classNames( classes.rowDay, weekendHighlight ) }>
 
 			<td className={ classes.cellDayDate }>
-				<WithPrintableBackground
+				<Background
 					className={ classes.cellInner }
 					backgroundColor={ weekdayBackgroundColor[ date.day() ] } >
 					{ date.format( 'DD' ) }.
-				</WithPrintableBackground>
+				</Background>
 			</td>
 
 			<td className={ classes.cellDayName }>
-				<WithPrintableBackground
+				<Background
 					backgroundColor={ weekdayBackgroundColor[ date.day() ] }
 					className={ classes.cellInner }>
 					{ t( 'day_names.' + date.day() + '.abbrev' ) }
-				</WithPrintableBackground>
+				</Background>
 			</td>
 
 			{ cells }
