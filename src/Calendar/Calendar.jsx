@@ -6,6 +6,10 @@ import moment from  'moment';
 import Month from './Month.jsx';
 
 
+// Generating an array with values 0 to 11.
+const monthIndices = Array.from(Array(12).keys());
+
+
 export const useStyles = createUseStyles({
 	calendar: {},
 });
@@ -13,19 +17,16 @@ export const useStyles = createUseStyles({
 function Calendar({ year }) {
 	const classes = useStyles();
 
-	let months = new Array();
-	for( let monthIndex = 0; monthIndex < 12; monthIndex++ ) {
-		months.push(
-			<Month
-				key={ 'month_' + monthIndex }
-				year={ year }
-				monthIndex={ monthIndex } />
-		);
-	}
-
 	return (
 		<div className={ classes.calendar }>
-			{ months }
+
+			{ monthIndices.map( monthIndex => (
+				<Month
+					key={ 'month_' + monthIndex }
+					year={ year }
+					monthIndex={ monthIndex } />
+			) ) }
+
 		</div>
 	);
 }
