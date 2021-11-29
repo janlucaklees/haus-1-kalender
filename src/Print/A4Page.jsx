@@ -54,7 +54,12 @@ const useStyles = createUseStyles({
 		borderStyle: 'solid',
 		borderColor: props => props.backgroundColor,
 		// Firefox does not print backgrounds by default. But with this hack, we force him to.
-		boxShadow: props => `inset 0px 0px 0px 100vh ${props.backgroundColor}`,
+		boxShadow: props => `2px 2px 10px 0px #888, inset 0px 0px 0px 100vh ${props.backgroundColor}`,
+
+		// On Print only use the inset shadow to color the page.
+		'@media print': {
+			boxShadow: props => `inset 0px 0px 0px 100vh ${props.backgroundColor}`,
+		}
 	},
 });
 
