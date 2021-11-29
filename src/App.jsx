@@ -9,6 +9,8 @@ import i18n from './i18n';
 import Controls from './Controls.jsx';
 import Calendar from './Calendar/Calendar.jsx';
 import { pageDimensions } from './Print/A4Page.jsx';
+import browser from "./browser";
+import NoChromeWarning from "./NoChromeWarning";
 
 
 WebFont.load({
@@ -85,6 +87,8 @@ function App() {
 				<Controls onYearChange={ handleYearChange }/>
 
 			</div>
+
+			{ browser.name !== 'chrome' && ( <NoChromeWarning /> ) }
 
 			<Calendar year={ year } />
 

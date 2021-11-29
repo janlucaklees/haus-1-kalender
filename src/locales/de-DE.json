@@ -5,7 +5,8 @@
 		},
 		"page": {
 			"title": "Der Haus-1 Kalender zum selber Drucken",
-			"select_year": "Jahr auswählen:"
+			"select_year": "Jahr auswählen:",
+			"no-chrome-warning": "Achtung! Du benuntz kein Google Chrome. Es kann sein, dass diese Seite nicht richtig funktioniert. Für optimale Ergebnisse nutze Google Chrome."
 		},
 		"month_names": [
 			"Januar",
