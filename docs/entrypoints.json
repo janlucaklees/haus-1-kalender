@@ -1,0 +1,18 @@
+{
+  "entrypoints": {
+    "app": {
+      "js": [
+        "/haus-1-kalender/435.c8d8f030.js",
+        "/haus-1-kalender/app.ec404379.js"
+      ],
+      "css": [
+        "/haus-1-kalender/app.ac5a6ec3.css"
+      ]
+    }
+  },
+  "integrity": {
+    "/haus-1-kalender/435.c8d8f030.js": "sha384-z1QyKRbV7fIX2lLtX6yiT7Hfs2Ak+TIuiyjb28kYFTXmClU+LfFJ8CDR0BFc2s8y",
+    "/haus-1-kalender/app.ec404379.js": "sha384-9lQ9/2FKieQbo6SYkzl5ENfaY678+gAhOpaNcJy98P31N6qThoUC/x4B1l2yZWBr",
+    "/haus-1-kalender/app.ac5a6ec3.css": "sha384-gl3pgS2RjkW51aGVuFT54hsDM3vgQEOU3JzEIalpQz4iy6tgBRO3MRcojcFvDcAz"
+  }
+}
