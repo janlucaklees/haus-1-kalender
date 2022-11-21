@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { createUseStyles } from 'react-jss'
 import { useTranslation } from 'react-i18next';
 import moment from  'moment';
@@ -98,10 +98,8 @@ function App() {
 	);
 }
 
-ReactDOM.render(
-	<App />,
-	document.getElementById('react-root')
-);
+const root = createRoot(document.getElementById('react-root'));
+root.render(<App />);
 
 document.title = i18n.t( 'document.title', { year: moment().year() } );
 
