@@ -5,6 +5,8 @@ import { useTranslation } from 'react-i18next';
 import moment from  'moment';
 import WebFont from 'webfontloader';
 
+import './reset.css';
+
 import i18n from './i18n';
 import Controls from './Controls.jsx';
 import Calendar from './Calendar/Calendar.jsx';
