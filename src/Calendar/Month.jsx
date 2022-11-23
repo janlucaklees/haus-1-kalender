@@ -1,32 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss'
 import { useTranslation } from 'react-i18next';
 
 import Floor from './Floor.jsx';
 import TimeSlot from './TimeSlot.jsx';
 
 
-const useStyles = createUseStyles({
-	month: {
-		width: '100%',
-		margin: '25rem auto',
-		display: 'flex',
-		justifyContent: 'space-between',
-		'@media print': {
-			width: 'auto',
-			margin: 0,
-			display: 'block',
-		},
-	}
-});
-
 function Month({ year, month }) {
-	const classes = useStyles();
 	const { t } = useTranslation();
 
 	return (
-		<div className={ classes.month }>
+		<>
 
 			<Floor
 				year={ year }
@@ -66,7 +50,7 @@ function Month({ year, month }) {
 					description={ t( 'floors.first.options.creative_room.description' ) } />
 			</Floor>
 
-		</div>
+		</>
 	);
 }
 
@@ -76,4 +60,3 @@ Month.propTypes = {
 };
 
 export default Month;
-

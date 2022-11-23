@@ -25,9 +25,6 @@ const useStyles = createUseStyles({
 	'@global': {
 		html: {
 			fontSize: '1mm',
-			'@media print': {
-				fontSize: `${ 100 / pageDimensions.height }vh`,
-			},
 		},
 		body: {
 			backgroundColor: '#ddd',

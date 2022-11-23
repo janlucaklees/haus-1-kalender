@@ -33,7 +33,7 @@ const useStyles = createUseStyles({
 		},
 
 		overflow: 'hidden',
-		pageBreakAfter: 'always',
+		breakAfter: 'page',
 
 		backgroundColor: props => props.backgroundColor,
 		boxShadow: '2px 2px 10px 0px #888',

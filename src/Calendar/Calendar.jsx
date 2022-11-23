@@ -8,7 +8,20 @@ import range from "../range";
 
 
 export const useStyles = createUseStyles({
-	calendar: {},
+	calendar: {
+		display: 'grid',
+		gridGap: '10rem',
+		gridTemplateColumns: '210rem 210rem',
+
+		padding: '10rem 0',
+
+		'@media print': {
+			padding: '0',
+
+			gridGap: '0',
+			gridTemplateColumns: '210mm',
+		},
+	},
 });
 
 function Calendar({ year }) {
