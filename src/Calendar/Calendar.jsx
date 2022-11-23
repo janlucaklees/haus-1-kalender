@@ -16,10 +16,12 @@ export const useStyles = createUseStyles({
 		padding: '10rem 0',
 
 		'@media print': {
-			padding: '0',
+			display: 'block',
 
-			gridGap: '0',
-			gridTemplateColumns: '210mm',
+			gridGap: 'unset',
+			gridTemplateColumns: 'unset',
+
+			padding: '0',
 		},
 	},
 });

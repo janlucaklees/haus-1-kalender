@@ -21,6 +21,9 @@ export const pageDimensions = {
 const borderWidth = 1;
 
 const useStyles = createUseStyles({
+	'@page': {
+		size: 'A4',
+	},
 	page: {
 		width:  `${ pageDimensions.width }rem`,
 		height: `${ pageDimensions.height }rem`,
@@ -33,7 +36,6 @@ const useStyles = createUseStyles({
 		},
 
 		overflow: 'hidden',
-		breakAfter: 'page',
 
 		backgroundColor: props => props.backgroundColor,
 		boxShadow: '2px 2px 10px 0px #888',
@@ -42,10 +44,13 @@ const useStyles = createUseStyles({
 		fontFamily: "'Buenard', serif",
 
 		'@media print': {
+			width:  '100vw',
+			height: '100vh',
+
 			margin: 0,
 			boxShadow: 'none',
-			width: `${pageDimensions.width}mm`,
-			height: `${pageDimensions.height}mm`,
+
+			breakAfter: 'page',
 		}
 	},
 	firefoxPage: {
