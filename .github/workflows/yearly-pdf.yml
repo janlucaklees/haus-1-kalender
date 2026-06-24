@@ -1,0 +1,105 @@
+name: Yearly PDF
+
+on:
+  schedule:
+    - cron: '0 0 1 1 *'
+  workflow_dispatch:
+    inputs:
+      year:
+        description: PDF year to generate. Defaults to next year.
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  yearly-pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Select years
+        id: years
+        env:
+          REQUESTED_YEAR: ${{ github.event.inputs.year || '' }}
+        run: |
+          current_year="$(date -u +%Y)"
+
+          if [ -n "$REQUESTED_YEAR" ]; then
+            pdf_year="$REQUESTED_YEAR"
+          else
+            pdf_year="$((current_year + 1))"
+          fi
+
+          case "$pdf_year" in
+            ''|*[!0-9]*)
+              echo "Invalid PDF year: $pdf_year" >&2
+              exit 1
+              ;;
+          esac
+
+          echo "current_year=$current_year" >> "$GITHUB_OUTPUT"
+          echo "pdf_year=$pdf_year" >> "$GITHUB_OUTPUT"
+          echo "pdf_path=pdfs/haus-1-kalender-$pdf_year.pdf" >> "$GITHUB_OUTPUT"
+
+      - name: Render PDF
+        env:
+          PDF_PATH: ${{ steps.years.outputs.pdf_path }}
+          PDF_YEAR: ${{ steps.years.outputs.pdf_year }}
+        run: |
+          mkdir -p "$(dirname "$PDF_PATH")"
+          google-chrome \
+            --headless \
+            --disable-gpu \
+            --no-sandbox \
+            --run-all-compositor-stages-before-draw \
+            --virtual-time-budget=5000 \
+            --print-to-pdf-no-header \
+            --print-to-pdf="$PDF_PATH" \
+            "https://janlucaklees.github.io/haus-1-kalender/?year=$PDF_YEAR"
+
+      - name: Publish release asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PDF_PATH: ${{ steps.years.outputs.pdf_path }}
+          PDF_YEAR: ${{ steps.years.outputs.pdf_year }}
+        run: |
+          pdf_asset="$(basename "$PDF_PATH")"
+
+          if gh release view "$PDF_YEAR" >/dev/null 2>&1; then
+            gh release upload "$PDF_YEAR" "$PDF_PATH" --clobber
+          else
+            gh release create "$PDF_YEAR" "$PDF_PATH" \
+              --title "$PDF_YEAR" \
+              --notes "Haus 1 Kalender $PDF_YEAR"
+          fi
+
+          gh release view "$PDF_YEAR" --json assets --jq '.assets[].name' |
+            while read -r asset; do
+              if [ "$asset" != "$pdf_asset" ]; then
+                gh release delete-asset "$PDF_YEAR" "$asset" --yes
+              fi
+            done
+
+      - name: Update README PDF links
+        run: >
+          node scripts/update-pdf-links.mjs
+          "${{ steps.years.outputs.current_year }}"
+          "${{ github.repository }}"
+
+      - name: Commit README update
+        run: |
+          if git diff --quiet README.md; then
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update PDF links for ${{ steps.years.outputs.current_year }}"
+          git push origin main
