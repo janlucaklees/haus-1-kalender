@@ -7,7 +7,8 @@ Source files live in `src/`. The main entry is `src/main.tsx`, with calendar
 components in `src/Calendar/`, print layout components in `src/Print/`, table
 helpers in `src/Table/`, and translations in `src/locales/de-DE.json`.
 `index.html` is the Vite HTML entry and mounts `src/main.tsx`. Built static
-assets are emitted to `docs/`, which is used for GitHub Pages deployment.
+assets are emitted to `dist/` and deployed to GitHub Pages by the Pages
+workflow.
 
 ## Build, Test, and Development Commands
 
@@ -16,7 +17,7 @@ Use Bun, because the repository includes `bun.lock`.
 - `bun install` installs dependencies.
 - `bun run start` runs the Vite development server with hot reloading.
 - `bun run build` type-checks the app and creates a production build in
-  `docs/`.
+  `dist/`.
 - `bun run preview` serves the production build locally.
 
 The public path is configured as `/haus-1-kalender/` in `vite.config.ts`, so
@@ -40,15 +41,14 @@ Locale keys belong in `src/locales/de-DE.json` and should be accessed through
 There is currently no dedicated test framework configured in `package.json`.
 For behavior changes, verify locally with `bun run start` and check the rendered
 calendar in Chrome. For release changes, run `bun run build` and inspect the
-generated `docs/` output. Print-related changes should be checked through
+generated `dist/` output. Print-related changes should be checked through
 browser print preview, with Chrome as the primary target.
 
 ## Commit & Pull Request Guidelines
 
 The existing history uses short, imperative commit subjects, for example
 `Fixed reset.css missing`, `Improved styling`, and `Updated bundled code`.
-Keep commits focused on one change and mention generated `docs/` updates when a
-build output change is included.
+Keep commits focused on one change.
 
 Pull requests should describe the visible calendar or print behavior changed,
 list the local verification performed, and include screenshots or print-preview

@@ -83,3 +83,6 @@ typings/
 
 # Playwright MCP
 .playwright-mcp/
+
+# Build output
+dist/

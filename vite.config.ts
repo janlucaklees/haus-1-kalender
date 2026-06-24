@@ -5,7 +5,7 @@ export default defineConfig({
 	base: '/haus-1-kalender/',
 	plugins: [ react() ],
 	build: {
-		outDir: 'docs',
+		outDir: 'dist',
 		emptyOutDir: true,
 	},
 });
