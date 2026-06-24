@@ -35,6 +35,89 @@ jobs:
       - name: Build
         run: bun run build
 
+      - name: Check PDF output
+        run: |
+          mkdir -p tests/output/golden tests/output/current tests/output/diff
+
+          bun run preview -- --host 127.0.0.1 > tests/output/preview.log 2>&1 &
+          preview_pid="$!"
+
+          cleanup() {
+            kill "$preview_pid" || true
+          }
+          trap cleanup EXIT
+
+          preview_ready=0
+
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent --output /dev/null \
+              "http://127.0.0.1:4173/haus-1-kalender/?year=2027"; then
+              preview_ready=1
+              break
+            fi
+
+            if ! kill -0 "$preview_pid" 2>/dev/null; then
+              cat tests/output/preview.log
+              exit 1
+            fi
+
+            sleep 1
+          done
+
+          if [ "$preview_ready" -ne 1 ]; then
+            cat tests/output/preview.log
+            exit 1
+          fi
+
+          chrome="$(command -v google-chrome || command -v chromium)"
+          "$chrome" \
+            --headless \
+            --disable-gpu \
+            --no-sandbox \
+            --run-all-compositor-stages-before-draw \
+            --virtual-time-budget=5000 \
+            --no-pdf-header-footer \
+            --print-to-pdf="tests/output/haus-1-kalender-2027.pdf" \
+            "http://127.0.0.1:4173/haus-1-kalender/?year=2027"
+
+          pdftoppm -png -r 144 \
+            tests/fixtures/haus-1-kalender-2027.pdf \
+            tests/output/golden/page
+          pdftoppm -png -r 144 \
+            tests/output/haus-1-kalender-2027.pdf \
+            tests/output/current/page
+
+          golden_pages="$(find tests/output/golden -name '*.png' | wc -l)"
+          current_pages="$(find tests/output/current -name '*.png' | wc -l)"
+
+          if [ "$golden_pages" -ne "$current_pages" ]; then
+            echo "Expected $golden_pages pages, got $current_pages pages."
+            exit 1
+          fi
+
+          failed=0
+
+          for golden_page in tests/output/golden/*.png; do
+            page_name="$(basename "$golden_page")"
+            current_page="tests/output/current/$page_name"
+            diff_page="tests/output/diff/$page_name"
+
+            if ! compare -metric AE -fuzz 1% \
+              "$golden_page" "$current_page" "$diff_page" 2> /tmp/pdf-diff.txt; then
+              failed=1
+              echo "$page_name differs by $(cat /tmp/pdf-diff.txt) pixels."
+            fi
+          done
+
+          exit "$failed"
+
+      - name: Upload PDF diff
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: pdf-regression-diff
+          path: tests/output
+
       - name: Configure Pages
         uses: actions/configure-pages@v6
 

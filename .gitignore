@@ -86,3 +86,6 @@ typings/
 
 # Build output
 dist/
+
+# Test output
+tests/output/
