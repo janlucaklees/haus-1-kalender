@@ -32,12 +32,17 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
+      - name: Install PDF comparison tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes poppler-utils imagemagick
+
       - name: Build
         run: bun run build
 
-      - name: Check PDF output
+      - name: Render regression PDF
         run: |
-          mkdir -p tests/output/golden tests/output/current tests/output/diff
+          mkdir -p tests/output
 
           bun run preview -- --host 127.0.0.1 > tests/output/preview.log 2>&1 &
           preview_pid="$!"
@@ -80,12 +85,20 @@ jobs:
             --print-to-pdf="tests/output/haus-1-kalender-2027.pdf" \
             "http://127.0.0.1:4173/haus-1-kalender/?year=2027"
 
+      - name: Rasterize regression PDFs
+        run: |
+          mkdir -p tests/output/golden tests/output/current
+
           pdftoppm -png -r 144 \
             tests/fixtures/haus-1-kalender-2027.pdf \
             tests/output/golden/page
           pdftoppm -png -r 144 \
             tests/output/haus-1-kalender-2027.pdf \
             tests/output/current/page
+
+      - name: Compare regression PDF pages
+        run: |
+          mkdir -p tests/output/diff
 
           golden_pages="$(find tests/output/golden -name '*.png' | wc -l)"
           current_pages="$(find tests/output/current -name '*.png' | wc -l)"
