@@ -1,22 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { createUseStyles } from 'react-jss'
 import { useTranslation } from 'react-i18next';
-import moment from  'moment';
+import { getYear } from 'date-fns';
 
+import classes from './Controls.module.css';
 
-const useStyles = createUseStyles({
-	container: {
-		textAlign: 'center',
-		fontSize: '6rem',
-	}
-});
+type ControlsProps = {
+	onYearChange: (year: string) => void;
+};
 
-function Controls({ onYearChange }) {
-	const classes = useStyles();
+function Controls({ onYearChange }: ControlsProps) {
 	const { t } = useTranslation();
 
-	const currentYear = moment().year();
+	const currentYear = getYear(new Date());
 
 	return (
 		<div className={ classes.container }>
@@ -31,9 +25,4 @@ function Controls({ onYearChange }) {
 	);
 }
 
-Controls.propTypes = {
-	onYearChange: PropTypes.func,
-}
-
 export default Controls;
-

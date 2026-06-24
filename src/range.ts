@@ -1,5 +1,4 @@
-
-export default function ( end, start = 1 ) {
+export default function range(end: number, start = 1): number[] {
 	console.assert(Number.isInteger(end));
 	console.assert(Number.isInteger(start));
 

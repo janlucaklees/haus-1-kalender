@@ -1,12 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
-import Floor from './Floor.jsx';
-import TimeSlot from './TimeSlot.jsx';
+import Floor from './Floor';
+import TimeSlot from './TimeSlot';
 
+type MonthProps = {
+	year: number;
+	month: number;
+};
 
-function Month({ year, month }) {
+function Month({ year, month }: MonthProps) {
 	const { t } = useTranslation();
 
 	return (
@@ -53,10 +55,5 @@ function Month({ year, month }) {
 		</>
 	);
 }
-
-Month.propTypes = {
-	year: PropTypes.number.isRequired,
-	month: PropTypes.number.isRequired,
-};
 
 export default Month;

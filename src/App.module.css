@@ -1,0 +1,29 @@
+.container {
+	width: 430rem;
+	margin: 10rem auto;
+	font-family: 'Noto Sans', sans-serif;
+	color: #0b0020;
+}
+
+.header {
+	background-color: #fff;
+	padding: 5rem 7rem;
+	box-shadow: 2px 2px 10px 0 #888;
+}
+
+.heading {
+	font-size: 16rem;
+	text-align: center;
+	margin-bottom: 5rem;
+}
+
+@media print {
+	.container {
+		width: auto;
+		margin: 0;
+	}
+
+	.header {
+		display: none;
+	}
+}

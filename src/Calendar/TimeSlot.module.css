@@ -1,0 +1,15 @@
+.cell {
+	text-align: center;
+	vertical-align: bottom;
+	padding-bottom: 1rem;
+}
+
+.label {
+	font-size: 5.5rem;
+}
+
+.description {
+	font-size: 3.3rem;
+	color: #696d7f;
+	font-family: 'Noto Serif', serif;
+}

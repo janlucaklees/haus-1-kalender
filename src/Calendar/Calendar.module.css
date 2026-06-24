@@ -1,0 +1,15 @@
+.calendar {
+	display: grid;
+	gap: 10rem;
+	grid-template-columns: 210rem 210rem;
+	padding: 10rem 0;
+}
+
+@media print {
+	.calendar {
+		display: block;
+		gap: unset;
+		grid-template-columns: unset;
+		padding: 0;
+	}
+}

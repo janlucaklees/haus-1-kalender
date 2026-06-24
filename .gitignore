@@ -80,3 +80,6 @@ typings/
 
 # IDE
 .idea
+
+# Playwright MCP
+.playwright-mcp/

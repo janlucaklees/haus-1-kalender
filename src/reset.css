@@ -78,8 +78,6 @@ td {
 }
 
 html {
-	font-size: 62.5%;
-	/* Corrects text resizing oddly in IE6/7 when body font-size is set using rem units http://clagnut.com/blog/348/#c790 */
 	font-family: sans-serif;
 	-webkit-text-size-adjust: 100%;
 	/* Prevents iOS text size adjust after orientation change, without disabling user zoom */
