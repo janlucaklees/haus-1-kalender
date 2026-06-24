@@ -19,9 +19,9 @@ jobs:
 
     steps:
       - name: Checkout main
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
-          ref: main
+          ref: ${{ github.ref_name }}
 
       - name: Select years
         id: years
@@ -102,4 +102,4 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add README.md
           git commit -m "Update PDF links for ${{ steps.years.outputs.current_year }}"
-          git push origin main
+          git push origin "HEAD:${{ github.ref_name }}"
