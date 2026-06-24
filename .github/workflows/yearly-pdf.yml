@@ -59,7 +59,7 @@ jobs:
             --no-sandbox \
             --run-all-compositor-stages-before-draw \
             --virtual-time-budget=5000 \
-            --print-to-pdf-no-header \
+            --no-pdf-header-footer \
             --print-to-pdf="$PDF_PATH" \
             "https://janlucaklees.github.io/haus-1-kalender/?year=$PDF_YEAR"
 
